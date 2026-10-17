@@ -1,0 +1,51 @@
+[workspace]
+members = [".", "telemetry-station"]
+default-members = ["."]
+resolver = "2"
+
+[workspace.dependencies]
+cu29 = { path = "../copper-rs/core/cu29", default-features = false, features = [
+  "std",
+  "logstream",
+  "reflect",
+] }
+cu29-logstream = { path = "../copper-rs/core/cu29_logstream", features = [
+  "std",
+] }
+cu29-logstream-udp = { path = "../copper-rs/components/res/cu29_logstream_udp" }
+cu-gstreamer = { path = "../copper-rs/components/sources/cu_gstreamer", features = [
+  "gst",
+] }
+cu29-build = { path = "../copper-rs/core/cu29_build" }
+clap = { version = "4", features = ["derive"] }
+
+[package]
+name = "cu-multistream-telemetry-demo"
+version = "0.1.0"
+edition = "2024"
+default-run = "cu-multistream-telemetry-demo"
+description = "Six-camera Copper UDP telemetry robot and shared live-twin graph"
+publish = false
+
+[features]
+default = ["server"]
+server = []
+twin = []
+lossless = []
+near-lossless = []
+
+[dependencies]
+cu29.workspace = true
+cu29-logstream.workspace = true
+cu29-logstream-udp.workspace = true
+cu-gstreamer.workspace = true
+clap.workspace = true
+ctrlc = "3.5"
+
+[build-dependencies]
+cu29-build.workspace = true
+
+[[bin]]
+name = "cu-multistream-telemetry-demo"
+path = "src/main.rs"
+required-features = ["server"]

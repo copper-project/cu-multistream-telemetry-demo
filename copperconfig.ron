@@ -1,0 +1,117 @@
+(
+    logging: (
+        enable_task_logging: false,
+        enable_keyframe_logging: false,
+        keyframe_interval: 60,
+        copperlist_count: 8,
+    ),
+    monitor: (type: "cu_multistream_telemetry_demo::StreamMonitor"),
+    runtime: (rate_target_hz: 120),
+    resources: [
+        (
+            id: "network",
+            provider: "cu29_logstream_udp::CuUdpLogStreamResources",
+            config: {
+                "bind_addr": "0.0.0.0:7448",
+                "remote_addr": "192.168.1.3:7447",
+                "send_buffer_bytes": 33554432,
+            },
+        ),
+    ],
+    log_streaming: (
+        destinations: [
+            (
+                id: "workstation",
+                transport: (type: "cu29_logstream_udp::CuUdpLogStreamTx", resource: "network.tx"),
+                feedback: (
+                    transport: (
+                        type: "cu29_logstream_udp::CuUdpLogStreamRx",
+                        resource: "network.rx",
+                    ),
+                    report_interval_ms: 100,
+                    timeout_ms: 1000,
+                    adaptation: (
+                        min_repair_every_source_symbols: 4,
+                        max_repair_every_source_symbols: 32,
+                    ),
+                ),
+                link: (
+                    mtu_bytes: 1200,
+                    bitrate_bps: 200000000,
+                    memory_budget_kib: 524288,
+                    max_latency_ms: 120,
+                    burst_packets: 32,
+                ),
+                fec: (
+                    continuous: (
+                        field: Gf256,
+                        window_symbols: 16,
+                        repair_every_source_symbols: 32,
+                        repair_density: Full,
+                    ),
+                    objects: (max_object_bytes: 65536, repair_symbols_per_block: 2),
+                ),
+                recovery_interval: 60,
+                max_record_bytes: 16777216,
+            ),
+        ],
+    ),
+    tasks: [
+        (
+            id: "cam0",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+        (
+            id: "cam1",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+        (
+            id: "cam2",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+        (
+            id: "cam3",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+        (
+            id: "cam4",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+        (
+            id: "cam5",
+            type: "cu_gstreamer::CuGStreamer<2>",
+            config: {
+                "pipeline": "unused",
+                "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
+            },
+        ),
+    ],
+    cnx: [
+        (src: "cam0", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+        (src: "cam1", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+        (src: "cam2", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+        (src: "cam3", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+        (src: "cam4", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+        (src: "cam5", dst: "__nc__", msg: "cu_gstreamer::CuGstBuffer"),
+    ],
+)

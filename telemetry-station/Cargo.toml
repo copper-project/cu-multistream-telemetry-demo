@@ -1,0 +1,23 @@
+[package]
+name = "telemetry-station"
+version = "0.1.0"
+edition = "2024"
+description = "Six-camera eframe station for the Copper multistream telemetry demo"
+publish = false
+
+[dependencies]
+cu-multistream-telemetry-demo = { path = "..", default-features = false, features = [
+  "twin",
+] }
+cu29.workspace = true
+cu29-logstream.workspace = true
+cu29-logstream-udp.workspace = true
+gstreamer = "0.25"
+gstreamer-app = { version = "0.25", features = ["v1_20"] }
+eframe = { version = "0.33", default-features = false, features = [
+  "glow",
+  "x11",
+  "wayland",
+  "default_fonts",
+] }
+clap.workspace = true
