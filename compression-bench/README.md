@@ -5,6 +5,8 @@ This standalone workspace package benchmarks native LZ4 1.10 and Zstandard
 libraries and Copper/GStreamer development libraries are not needed to build it.
 It does not change the live streaming pipeline.
 
+Measured Delta results are in [RESULTS.md](RESULTS.md).
+
 On Delta, from `/root/cu-multistream-telemetry-bench`, after the cameras finish
 initializing and with other camera applications stopped:
 

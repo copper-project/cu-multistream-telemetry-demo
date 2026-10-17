@@ -1,0 +1,154 @@
+{
+  "benchmark_source_commit": "dfe56fa",
+  "uname": [
+    "Linux",
+    "delta-guillaume",
+    "6.8.12-l4t-r39.2.1-1021.21",
+    "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+    "aarch64"
+  ],
+  "power_mode": "NV Power Mode: 40W\n4",
+  "cpu_online": "0-7",
+  "cpu_governor": "schedutil",
+  "cpu_max_khz": "1984000",
+  "jetson_release": "# R39 (release), REVISION: 2.1, GCID: 46758480, BOARD: generic, EABI: aarch64, DATE: Fri Aug  7 05:54:22 AM UTC 2026",
+  "capture": {
+    "frames": 40,
+    "width": 1920,
+    "height": 1080,
+    "format": "UYVY",
+    "started_unix": 1792257510.2442,
+    "cameras": [
+      {
+        "device": "/dev/cams/des0/port0/sensor0",
+        "file": "/tmp/compression-samples/cam0.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des0/port0/sensor0",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam0.uyvy"
+        ]
+      },
+      {
+        "device": "/dev/cams/des0/port1/sensor0",
+        "file": "/tmp/compression-samples/cam1.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des0/port1/sensor0",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam1.uyvy"
+        ]
+      },
+      {
+        "device": "/dev/cams/des0/port1/sensor1",
+        "file": "/tmp/compression-samples/cam2.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des0/port1/sensor1",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam2.uyvy"
+        ]
+      },
+      {
+        "device": "/dev/cams/des0/port1/sensor2",
+        "file": "/tmp/compression-samples/cam3.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des0/port1/sensor2",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam3.uyvy"
+        ]
+      },
+      {
+        "device": "/dev/cams/des1/port0/sensor0",
+        "file": "/tmp/compression-samples/cam4.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des1/port0/sensor0",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam4.uyvy"
+        ]
+      },
+      {
+        "device": "/dev/cams/des1/port0/sensor1",
+        "file": "/tmp/compression-samples/cam5.uyvy",
+        "command": [
+          "gst-launch-1.0",
+          "-e",
+          "v4l2src",
+          "device=/dev/cams/des1/port0/sensor1",
+          "num-buffers=40",
+          "!",
+          "video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1",
+          "!",
+          "filesink",
+          "location=/tmp/compression-samples/cam5.uyvy"
+        ]
+      }
+    ],
+    "elapsed_seconds": 4.212949275970459
+  },
+  "samples": [
+    {
+      "name": "cam0.uyvy",
+      "bytes": 165888000,
+      "sha256": "fe3248b994458bf468251573ba5ddb1cf12fa0b7aa60b59d2d6ac0475a30898a"
+    },
+    {
+      "name": "cam1.uyvy",
+      "bytes": 165888000,
+      "sha256": "26062c8775043ea02cd2440d028207160f959b8209502fc6f50319bbd2b38195"
+    },
+    {
+      "name": "cam2.uyvy",
+      "bytes": 165888000,
+      "sha256": "a5ad68af8a1a33c630781f3e4ca74aaa7898961f6379cc4ad81a01e26c42e91a"
+    },
+    {
+      "name": "cam3.uyvy",
+      "bytes": 165888000,
+      "sha256": "6b771b1ce72bd77ba520cb3c15bdd28f018ac7b40dd40e4b2ad1d6d222d0e86e"
+    },
+    {
+      "name": "cam4.uyvy",
+      "bytes": 165888000,
+      "sha256": "cf3e0123ac0b4a10a38f2ef274f3486903c64d01b7d89a0e9e463d7c6eed1749"
+    },
+    {
+      "name": "cam5.uyvy",
+      "bytes": 165888000,
+      "sha256": "349c84f82bb56a3a76754771fc4e9933912a444b3a7bcbdab473f14f2140af7f"
+    }
+  ],
+  "command": "target/release/compression-bench /tmp/compression-samples/cam*.uyvy"
+}
