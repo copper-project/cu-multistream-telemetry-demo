@@ -1,0 +1,11 @@
+[package]
+name = "compression-bench"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Independent-frame lossless UYVY compression benchmark"
+
+[dependencies]
+clap.workspace = true
+lz4 = "1.28.1"
+zstd = { version = "0.13.3", default-features = false }

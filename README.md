@@ -225,6 +225,11 @@ tshark -i eth0 -f 'udp port 7447 or udp port 7448' -q -z io,stat,1
 
 ## Experimental near-lossless mode
 
+For CPU-based, byte-exact compression of native UYVY, see the standalone
+[LZ4/Zstd benchmark](compression-bench/README.md). It measures compression ratio,
+preprocessing cost, and one-worker versus six-worker throughput without changing
+the live video transport.
+
 For the 2.5 Gbit/s adapter, use YUV444 H.265 with a fixed low quantizer and the
 lossless encoder switch disabled:
 

@@ -1,5 +1,5 @@
 [workspace]
-members = [".", "telemetry-station"]
+members = [".", "telemetry-station", "compression-bench"]
 default-members = ["."]
 resolver = "2"
 
