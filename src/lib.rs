@@ -3,6 +3,16 @@
 use cu29::prelude::*;
 extern crate self as cu_multistream_telemetry_demo;
 
+#[cfg(feature = "nvmedia")]
+pub mod nvmedia;
+
+/// Camera backend selected when building the robot; the wire payload stays the same.
+#[cfg(feature = "nvmedia")]
+pub type CameraSource = nvmedia::CuNvMediaSource;
+/// Camera backend selected when building the robot; the wire payload stays the same.
+#[cfg(not(feature = "nvmedia"))]
+pub type CameraSource = cu_gstreamer::CuGStreamer<2>;
+
 #[cfg(feature = "server")]
 #[copper_runtime(config = "copperconfig.ron")]
 struct Server {}

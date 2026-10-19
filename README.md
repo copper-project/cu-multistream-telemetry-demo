@@ -322,3 +322,10 @@ A [similar NVIDIA buffer report](https://forums.developer.nvidia.com/t/nvv4l2h26
 is a diagnostic lead, not an established cause for this BSP. NVIDIA's
 [accelerated GStreamer guide](https://docs.nvidia.com/jetson/archives/r36.3/DeveloperGuide/SD/Multimedia/AcceleratedGstreamer.html)
 describes NV24 hardware encoding. The robot's NVIDIA driver/plugin was not replaced.
+
+## NvMedia lossless alternative
+
+The [Rust NvMedia backend](NVMEDIA.md) uses the verified buffer-reservation
+workaround and supports local six-camera Copper recording and UDP streaming.
+Start with `just record --output logs/nvmedia-trial.copper --seconds 30` on Delta;
+the initial default is 2 fps per camera.

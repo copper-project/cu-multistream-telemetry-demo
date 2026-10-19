@@ -18,4 +18,23 @@ telemetry *args:
 fmt:
     cargo fmt --all
     taplo fmt Cargo.toml telemetry-station/Cargo.toml
-    fmtron copperconfig.ron
+    fmtron copperconfig.ron copperconfig-record.ron
+
+# Run the lossless NvMedia alternative on Delta.
+nvmedia *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ -r /data/dev/env.sh ]]; then
+        source /data/dev/env.sh
+    fi
+    sysctl -w net.core.wmem_max=67108864 net.core.rmem_max=16777216 >/dev/null
+    exec cargo +stable run -r --locked --features nvmedia -- "$@"
+
+# Record six lossless cameras in a local Copper log on Delta.
+record *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ -r /data/dev/env.sh ]]; then
+        source /data/dev/env.sh
+    fi
+    exec cargo +stable run -r --locked --features nvmedia --bin nvmedia-record -- record "$@"

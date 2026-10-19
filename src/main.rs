@@ -12,7 +12,7 @@ struct Args {
     remote: SocketAddr,
     #[arg(long, default_value = "0.0.0.0:7448")]
     bind: SocketAddr,
-    /// Camera frame rate (default: 15 near-lossless/lossless, 30 CBR).
+    /// Camera frame rate (default: 2 NvMedia, 15 near-lossless/lossless, 30 CBR).
     #[arg(long, value_parser = clap::value_parser!(u32).range(1..=30))]
     fps: Option<u32>,
     /// Experimental lossless encoding with immediate encoded-buffer copying.
@@ -30,7 +30,7 @@ struct Args {
     qp: u32,
     #[arg(long, default_value_t = 20000000)]
     camera_bitrate: u32,
-    /// Link budget in Mbit/s (default: 2000 near-lossless, 900 lossless, 200 CBR).
+    /// Link budget in Mbit/s (default: 2000 near-lossless, 900 NvMedia/lossless, 200 CBR).
     #[arg(long, value_parser = clap::value_parser!(u32).range(1..=2300))]
     link_mbps: Option<u32>,
     /// Packet expiry in milliseconds (default: 800 near-lossless/lossless, 120 CBR).
@@ -42,19 +42,24 @@ struct Args {
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
-    let encoding = if args.near_lossless || (!args.lossless && cfg!(feature = "near-lossless")) {
+    let encoding = if args.near_lossless
+        || (!args.lossless && !cfg!(feature = "nvmedia") && cfg!(feature = "near-lossless"))
+    {
         Encoding::NearLossless { qp: args.qp }
-    } else if args.lossless || cfg!(feature = "lossless") {
+    } else if args.lossless || cfg!(feature = "lossless") || cfg!(feature = "nvmedia") {
         Encoding::Lossless
     } else {
         Encoding::Cbr {
             bitrate: args.camera_bitrate,
         }
     };
+    if cfg!(feature = "nvmedia") && !matches!(encoding, Encoding::Lossless) {
+        return Err("the NvMedia backend requires lossless encoding".into());
+    }
     let (default_fps, default_link_mbps, default_latency_ms) = match encoding {
         Encoding::Cbr { .. } => (30, 200, 120),
         Encoding::NearLossless { .. } => (15, 2000, 800),
-        Encoding::Lossless => (15, 900, 800),
+        Encoding::Lossless => (if cfg!(feature = "nvmedia") { 2 } else { 15 }, 900, 800),
     };
     let fps = args.fps.unwrap_or(default_fps);
     let link_mbps = args.link_mbps.unwrap_or(default_link_mbps);
@@ -70,6 +75,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .destinations[0];
     destination.link.bitrate_bps = u64::from(link_mbps) * 1_000_000;
     destination.link.max_latency_ms = latency_ms;
+    if cfg!(feature = "nvmedia") {
+        // One CopperList can contain six full-entropy 8.25 MB access units.
+        destination.max_record_bytes = 64 * 1024 * 1024;
+        destination.link.memory_budget_kib = 2 * 1024 * 1024;
+    }
     let net = config.resources[0].config.as_mut().expect("network config");
     net.set("bind_addr", args.bind.to_string());
     net.set("remote_addr", args.remote.to_string());
@@ -79,11 +89,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .get_node_id_by_name(&format!("cam{i}"))
             .expect("camera id");
         let node = graph.get_node_mut(id).expect("camera node");
-        node.set_param("copy_buffers", matches!(encoding, Encoding::Lossless));
+        node.set_param("fps", fps);
         node.set_param(
-            "pipeline",
-            cu_multistream_telemetry_demo::pipeline(device, fps, encoding),
+            "copy_buffers",
+            ron::from_str::<cu29::config::Value>(if matches!(encoding, Encoding::Lossless) {
+                "Value(true)"
+            } else {
+                "Value(false)"
+            })?,
         );
+        node.set_param("pipeline", {
+            #[cfg(feature = "nvmedia")]
+            {
+                cu_multistream_telemetry_demo::nvmedia::capture_pipeline(device, fps)
+            }
+            #[cfg(not(feature = "nvmedia"))]
+            {
+                cu_multistream_telemetry_demo::pipeline(device, fps, encoding)
+            }
+        });
     }
     let mut app = Server::builder().with_config(config).build()?;
     let streams = app.copper_runtime_mut().monitor.streams.clone();

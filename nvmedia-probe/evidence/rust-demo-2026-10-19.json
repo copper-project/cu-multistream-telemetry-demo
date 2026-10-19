@@ -1,0 +1,387 @@
+{
+  "hardware_verification": {
+    "rust-final-synthetic-30": {
+      "reference.y444": {
+        "bytes": 186624000,
+        "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+      },
+      "upload.y444": {
+        "bytes": 186624000,
+        "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+      },
+      "decoded.y444": {
+        "bytes": 186624000,
+        "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+      },
+      "stream.h265": {
+        "bytes": 248057711,
+        "sha256": "cc081cf6dfe0aea23b149c2767dc0fcb9e36623c52fca1660f12b0b7cc5b8221"
+      },
+      "frames": 30,
+      "max_frame": 8271205,
+      "min_frame": 8266848,
+      "decoded_exact": true,
+      "decode_command": [
+        "/data/dev/bin/dev-shell",
+        "gst-launch-1.0",
+        "-q",
+        "-e",
+        "filesrc",
+        "location=/root/nvmedia-probe/results/rust-final-synthetic-30/stream.h265",
+        "!",
+        "h265parse",
+        "!",
+        "avdec_h265",
+        "!",
+        "video/x-raw,format=Y444",
+        "!",
+        "filesink",
+        "location=/root/nvmedia-probe/results/rust-final-synthetic-30/decoded.y444",
+        "sync=false"
+      ],
+      "decode_returncode": 0,
+      "mean_stage_us": {
+        "upload_us": 61806.933333333334,
+        "encode_us": 108897.73333333334,
+        "retrieve_us": 2346.8
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,8269068,63935,58672,8569\n1,8267961,61795,110388,5143\n2,8269145,61724,110598,5383\n3,8268535,61495,111126,5160\n4,8269174,61819,110570,1792\n5,8267865,61807,110793,1762\n6,8268264,61926,110281,1742\n7,8269124,61847,110260,1792\n8,8268191,61581,110438,1783\n9,8266848,61792,110297,1748\n10,8267214,61705,110687,1790\n11,8268568,61652,110712,1789\n12,8267568,61447,110815,1751\n13,8269290,61895,110402,1753\n14,8268519,61804,110383,1799\n15,8268847,61677,110812,1750\n16,8271205,61506,110190,1822\n17,8268480,61817,110569,1801\n18,8269736,61630,110896,1750\n19,8268341,61760,111207,1799\n20,8268244,61782,110357,1797\n21,8269317,61639,110639,1744\n22,8268173,61834,110692,1711\n23,8268937,61615,110806,1750\n24,8268490,61681,110978,1749\n25,8268307,61937,110376,1745\n26,8268391,61775,110311,1786\n27,8269179,61605,110380,1778\n28,8268518,61777,110662,1780\n29,8268212,61949,111635,1886\n"
+    },
+    "rust-final-camera-30": {
+      "reference.y444": {
+        "bytes": 186624000,
+        "sha256": "d9dfd2bdd442caad7c455bac9f5c2cf9db13f1b9b533d792aa61643b33a4ab9f"
+      },
+      "upload.y444": {
+        "bytes": 186624000,
+        "sha256": "d9dfd2bdd442caad7c455bac9f5c2cf9db13f1b9b533d792aa61643b33a4ab9f"
+      },
+      "decoded.y444": {
+        "bytes": 186624000,
+        "sha256": "d9dfd2bdd442caad7c455bac9f5c2cf9db13f1b9b533d792aa61643b33a4ab9f"
+      },
+      "stream.h265": {
+        "bytes": 30878025,
+        "sha256": "9ed60402bc1a7584db6e603169e86e698168b33d76f83e4f32afff3d2a5044a5"
+      },
+      "frames": 30,
+      "max_frame": 1204710,
+      "min_frame": 763,
+      "decoded_exact": true,
+      "decode_command": [
+        "/data/dev/bin/dev-shell",
+        "gst-launch-1.0",
+        "-q",
+        "-e",
+        "filesrc",
+        "location=/root/nvmedia-probe/results/rust-final-camera-30/stream.h265",
+        "!",
+        "h265parse",
+        "!",
+        "avdec_h265",
+        "!",
+        "video/x-raw,format=Y444",
+        "!",
+        "filesink",
+        "location=/root/nvmedia-probe/results/rust-final-camera-30/decoded.y444",
+        "sync=false"
+      ],
+      "decode_returncode": 0,
+      "mean_stage_us": {
+        "upload_us": 61896.1,
+        "encode_us": 45900.73333333333,
+        "retrieve_us": 326.73333333333335
+      },
+      "original_uyvy_exact": true,
+      "reference.uyvy": {
+        "bytes": 124416000,
+        "sha256": "d3cf512356f6f48c6359914dc363764b9b7afffd1f6d3cb40799273e5b50c68c"
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,763,63712,11078,48\n1,1204710,61636,49703,852\n2,1107217,61894,48252,731\n3,1088105,61911,47169,716\n4,1078033,61820,47814,733\n5,1075328,61911,47368,267\n6,1076160,61888,47624,269\n7,1071739,61884,46775,268\n8,1071043,61982,47261,268\n9,1066011,62169,47265,308\n10,1063530,61554,47039,265\n11,1060522,61825,47250,266\n12,1058067,61898,47123,265\n13,1056680,61793,46944,263\n14,1057822,61700,46839,261\n15,1051377,61769,47204,267\n16,1055094,61832,46801,269\n17,1047828,61458,46451,262\n18,1047011,61969,46409,262\n19,1049232,61897,47031,265\n20,1048566,61853,46883,265\n21,1048284,61772,47218,264\n22,1046568,61872,46328,275\n23,1047374,61917,46471,265\n24,1048613,61939,46998,267\n25,1049291,61744,46485,266\n26,1048627,61746,46611,271\n27,1050945,61861,47070,266\n28,1051103,61887,46622,270\n29,1052382,61790,46936,288\n"
+    },
+    "six_camera_record": {
+      "record_log": "    Finished `release` profile [optimized] target(s) in 0.24s\n     Running `target/release/nvmedia-record record --output logs/nvmedia-rust-ready-six-2fps.copper --seconds 20`\nrecorded_seconds=21.7 output=logs/nvmedia-rust-ready-six-2fps.copper\n",
+      "extract_log": "copperlists=2377 frames=[42, 42, 42, 42, 43, 41] bytes=[44807426, 73870564, 68973799, 65079261, 54171522, 51840063]\n",
+      "decode": [
+        {
+          "camera": 0,
+          "decoded_bytes": 261273600,
+          "decoded_frames": 42,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam0.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        },
+        {
+          "camera": 1,
+          "decoded_bytes": 261273600,
+          "decoded_frames": 42,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam1.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        },
+        {
+          "camera": 2,
+          "decoded_bytes": 261273600,
+          "decoded_frames": 42,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam2.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        },
+        {
+          "camera": 3,
+          "decoded_bytes": 261273600,
+          "decoded_frames": 42,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam3.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        },
+        {
+          "camera": 4,
+          "decoded_bytes": 267494400,
+          "decoded_frames": 43,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam4.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        },
+        {
+          "camera": 5,
+          "decoded_bytes": 255052800,
+          "decoded_frames": 41,
+          "returncode": 0,
+          "stderr": "",
+          "command": [
+            "/data/dev/bin/dev-shell",
+            "gst-launch-1.0",
+            "-q",
+            "-e",
+            "filesrc",
+            "location=/root/nvmedia-probe/results/rust-ready-six-2fps-extracted/cam5.h265",
+            "!",
+            "h265parse",
+            "!",
+            "avdec_h265",
+            "!",
+            "video/x-raw,format=Y444",
+            "!",
+            "fdsink",
+            "fd=1",
+            "sync=false"
+          ]
+        }
+      ],
+      "stream_sha256": {
+        "cam0.h265": "1f7010ea2032579b057e5fccc3326e84eeb4358693948ec4676550e35a670c95",
+        "cam1.h265": "3b126eb39b8dd8686382d61baa3a249fb959b0a849a2b526247936a0bf762f55",
+        "cam2.h265": "7e08cbe52ec2889c4ff21b96d6ecfbf839793d2fde0d5fe27de27fe9bab3e752",
+        "cam3.h265": "97a1d5e8a314a312745fbbd9e89e51c7573636859be3a79a566ffd4943c49883",
+        "cam4.h265": "6e46ad0f41dde5ba0b36b90a0211e54d639aed7bd1fd640da4694ff3a0c7f33e",
+        "cam5.h265": "fa5f94421d3c4c87845464f8b79997df7aab0392f797b1553ddf8a7e78b7129d"
+      }
+    }
+  },
+  "mapped_libraries": {
+    "pid": 36232,
+    "command": [
+      "target/release/cu-multistream-telemetry-demo",
+      "--seconds",
+      "20"
+    ],
+    "nvidia_v4l2_encoder_loaded": false,
+    "libraries": {
+      "/usr/lib/libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+      "/usr/lib/libnvscibuf.so.1": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+      "/usr/lib/libnvscisync.so.1": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+      "/usr/lib/libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+    }
+  },
+  "delta_tests_log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/root/cu-multistream-telemetry-demo)\n    Finished `release` profile [optimized] target(s) in 2.06s\n     Running unittests src/lib.rs (target/release/deps/cu_multistream_telemetry_demo-be689b8af79952ad)\n\nrunning 1 test\ntest nvmedia::tests::test_uyvy_preserves_extremes_chroma_and_padded_rows ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/main.rs (target/release/deps/cu_multistream_telemetry_demo-e48e7ff28d573322)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/bin/nvmedia-check.rs (target/release/deps/nvmedia_check-f748388466aaa283)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/bin/nvmedia-record.rs (target/release/deps/nvmedia_record-ddf9c67371e35398)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/capture_buffers.rs (target/release/deps/capture_buffers-f3d9d8c94444d70f)\n\nrunning 1 test\ntest captured_bytes_survive_source_shutdown_in_both_modes ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s\n\n",
+  "sender_stream_log": "    Finished `release` profile [optimized] target(s) in 0.24s\n     Running `target/release/cu-multistream-telemetry-demo --seconds 20`\n423.0 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=86 loss=0.00% repair_every=4\n176.9 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=96 loss=0.00% repair_every=7\n176.9 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=106 loss=0.16% repair_every=10\n159.7 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=116 loss=0.00% repair_every=13\n140.8 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=126 loss=0.00% repair_every=17\n165.7 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=136 loss=0.00% repair_every=20\n163.7 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=146 loss=0.00% repair_every=12\n170.8 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=157 loss=0.00% repair_every=15\n116.9 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=166 loss=0.00% repair_every=18\n166.5 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=176 loss=0.00% repair_every=22\n187.2 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=187 loss=0.00% repair_every=25\n103.5 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=196 loss=0.00% repair_every=14\n174.1 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=204 loss=0.05% repair_every=16\n159.4 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=214 loss=0.00% repair_every=20\n160.3 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=224 loss=0.00% repair_every=23\n157.2 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=234 loss=0.00% repair_every=26\n198.8 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=241 loss=0.06% repair_every=14\n224.9 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=251 loss=0.00% repair_every=10\n153.3 Mbit/s tx_drops=0 expired=0 inbox_drops=6 feedback=Active reports=260 loss=0.11% repair_every=13\n",
+  "throughput_trial_15fps": {
+    "record_log": "recorded_seconds=22.0 output=logs/nvmedia-rust-cached-six-15fps.copper\n",
+    "extract_log": "copperlists=1994 frames=[47, 42, 43, 44, 42, 42] bytes=[42828464, 64989995, 66016268, 59319503, 47317203, 45827601]\n"
+  },
+  "delta_source_sha256": {
+    "Cargo.toml": "3ba2059c8743f3c7854a5a9c83e3cedd56edc18b8bf53a915e50b1d3eef68a05",
+    "Cargo.lock": "f4754700a1ddfa184cc184731e9d0b337c6288438052a572302b2bc84751c3c4",
+    "copperconfig.ron": "1ae45d40ff2a6c315c8c167f454f904054b3b56a305e35951006aa45faa65c7e",
+    "copperconfig-record.ron": "f02a5ec6a71ef0cb7cf2c3043580d5130ef046b25cceb1098147385e72487d52",
+    "src/main.rs": "79cde302fd883f2c8c717be23f9d0f9befb1970e2b0228c5d60a5d9bdf74fc88",
+    "src/lib.rs": "6e00d708311567f35456f8eff4de0b321fb8b63898ff1a66d485f503eabd1ac1",
+    "src/nvmedia/ffi.rs": "75a328f6784e129f0155061cda47fc705f98a50c25c57ecff6858adc714f75c2",
+    "src/nvmedia/encoder.rs": "b75a44511688a6242f0b057ab786113e46e8b0464e2f32a3ed5ebdf78c2b1883",
+    "src/nvmedia/mod.rs": "6d06fe57beaf4dc80bb7af507dc14935ea073870458bf78a4337c64c1780428b",
+    "src/bin/nvmedia-check.rs": "0c7aebe425142f5a6d96b4bd210712b3409ba93c1cc394d3cdc01e4549a890d0",
+    "src/bin/nvmedia-record.rs": "2a20dc1bf0f4742c60974def1494c447dca428c5a6fd02da684f91522cc42fef"
+  },
+  "date": "2026-10-19",
+  "branch": "experiment/nvmedia-iep-lossless",
+  "board": "Yaak Delta / Tegra234 / L4T R39.2.1",
+  "station_stream_log": "Copper log: logs/nvmedia-validation-20261019-v6.copper\nt=1s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=0 gaps=0 replay=0 feedback=0\nt=2s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=14148 gaps=0 replay=0 feedback=4\nt=3s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=56592 gaps=0 replay=0 feedback=14\nt=4s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=99036 gaps=0 replay=0 feedback=24\nt=5s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=141480 gaps=0 replay=0 feedback=33\nt=6s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=183924 gaps=0 replay=0 feedback=43\nt=7s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=226368 gaps=0 replay=0 feedback=53\nt=8s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=268812 gaps=0 replay=0 feedback=63\nt=9s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=311256 gaps=0 replay=0 feedback=73\nt=10s cameras(encoded,decoded,errors,bytes,max_au)=[(0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0), (0, 0, 0, 0, 0)] bytes=17020571 gaps=9 replay=0 feedback=83\nt=11s cameras(encoded,decoded,errors,bytes,max_au)=[(1, 1, 0, 1046199, 1046199), (2, 1, 0, 3500853, 1752380), (2, 2, 0, 3436807, 1723346), (2, 2, 0, 3174374, 1595082), (2, 2, 0, 2496159, 1250219), (1, 1, 0, 1258367, 1258367)] bytes=47804987 gaps=9 replay=115 feedback=93\nt=12s cameras(encoded,decoded,errors,bytes,max_au)=[(4, 3, 0, 4183989, 1049503), (4, 4, 0, 7008046, 1753710), (4, 4, 0, 6871427, 1723346), (4, 3, 0, 6377581, 1602168), (4, 4, 0, 4997936, 1251193), (3, 3, 0, 3783126, 1262838)] bytes=69879859 gaps=9 replay=235 feedback=103\nt=13s cameras(encoded,decoded,errors,bytes,max_au)=[(6, 5, 0, 6277302, 1049503), (6, 6, 0, 10486958, 1753710), (6, 6, 0, 10253519, 1723346), (6, 5, 0, 9553810, 1602168), (6, 6, 0, 7506025, 1255912), (5, 5, 0, 6311800, 1265318)] bytes=90182393 gaps=9 replay=366 feedback=113\nt=14s cameras(encoded,decoded,errors,bytes,max_au)=[(8, 7, 0, 8375067, 1050070), (8, 8, 0, 13950694, 1753710), (8, 8, 0, 13650193, 1723346), (8, 7, 0, 12723960, 1602168), (8, 8, 0, 10011362, 1255912), (7, 7, 0, 8839324, 1265318)] bytes=109707127 gaps=9 replay=472 feedback=123\nt=15s cameras(encoded,decoded,errors,bytes,max_au)=[(10, 9, 0, 10473164, 1050070), (10, 9, 0, 17475508, 1777489), (10, 10, 0, 17033996, 1723346), (10, 10, 0, 15896540, 1602168), (10, 10, 0, 12518180, 1255912), (9, 9, 0, 11366502, 1265318)] bytes=129155604 gaps=9 replay=590 feedback=133\nt=16s cameras(encoded,decoded,errors,bytes,max_au)=[(11, 11, 0, 11523800, 1050636), (11, 11, 0, 19226727, 1777489), (12, 12, 0, 20422231, 1723346), (12, 12, 0, 19083635, 1602168), (12, 12, 0, 15022621, 1255912), (11, 11, 0, 13896483, 1266114)] bytes=148229964 gaps=10 replay=706 feedback=143\nt=17s cameras(encoded,decoded,errors,bytes,max_au)=[(13, 12, 0, 13627672, 1052659), (13, 13, 0, 22746541, 1777489), (14, 14, 0, 23831298, 1723346), (14, 13, 0, 22273743, 1602168), (14, 14, 0, 17529521, 1255912), (12, 12, 0, 15158470, 1266114)] bytes=167719069 gaps=10 replay=814 feedback=153\nt=18s cameras(encoded,decoded,errors,bytes,max_au)=[(15, 14, 0, 15732107, 1053020), (15, 15, 0, 26266302, 1777489), (16, 16, 0, 27240978, 1723346), (16, 15, 0, 25465003, 1602168), (16, 16, 0, 20035907, 1255912), (14, 14, 0, 17687221, 1266114)] bytes=187256317 gaps=10 replay=932 feedback=163\nt=19s cameras(encoded,decoded,errors,bytes,max_au)=[(17, 16, 0, 17837794, 1054004), (17, 17, 0, 29789426, 1777489), (18, 18, 0, 30652816, 1723346), (18, 17, 0, 28657653, 1602168), (18, 18, 0, 22539688, 1255912), (16, 16, 0, 20211580, 1266114)] bytes=206430590 gaps=10 replay=1051 feedback=173\nt=20s cameras(encoded,decoded,errors,bytes,max_au)=[(19, 18, 0, 19942292, 1054004), (19, 18, 0, 33307127, 1777489), (20, 20, 0, 34062710, 1723346), (20, 20, 0, 31846408, 1602168), (20, 20, 0, 25048698, 1256455), (18, 18, 0, 22740595, 1266114)] bytes=225943294 gaps=10 replay=1170 feedback=183\nt=21s cameras(encoded,decoded,errors,bytes,max_au)=[(20, 20, 0, 20995593, 1054004), (20, 20, 0, 35062644, 1777489), (22, 22, 0, 37464765, 1723346), (22, 22, 0, 35036815, 1602168), (22, 22, 0, 27556281, 1256455), (20, 20, 0, 25272986, 1266196)] bytes=244816355 gaps=11 replay=1285 feedback=193\nt=22s cameras(encoded,decoded,errors,bytes,max_au)=[(21, 21, 0, 22054510, 1058917), (22, 22, 0, 38583454, 1777489), (24, 24, 0, 40873471, 1723346), (24, 23, 0, 38234075, 1602168), (24, 24, 0, 30068884, 1257535), (21, 21, 0, 26541195, 1268209)] bytes=263512507 gaps=11 replay=1384 feedback=202\nt=23s cameras(encoded,decoded,errors,bytes,max_au)=[(24, 23, 0, 25234847, 1060401), (24, 24, 0, 42113726, 1777489), (26, 26, 0, 44289847, 1723346), (26, 25, 0, 41434180, 1602168), (26, 26, 0, 32585512, 1258648), (23, 23, 0, 29079755, 1270566)] bytes=283621478 gaps=11 replay=1511 feedback=210\nt=24s cameras(encoded,decoded,errors,bytes,max_au)=[(26, 25, 0, 27354743, 1060401), (26, 26, 0, 45640011, 1777489), (28, 28, 0, 47712310, 1723346), (28, 27, 0, 44629524, 1602168), (28, 28, 0, 35102876, 1260871), (25, 25, 0, 31625345, 1272913)] bytes=302836290 gaps=11 replay=1628 feedback=220\nt=25s cameras(encoded,decoded,errors,bytes,max_au)=[(28, 27, 0, 29478151, 1062313), (28, 27, 0, 49172074, 1777489), (30, 30, 0, 51140434, 1723346), (30, 30, 0, 47827507, 1602168), (30, 30, 0, 37619650, 1260871), (27, 27, 0, 34170693, 1273059)] bytes=322323306 gaps=11 replay=1751 feedback=230\nt=26s cameras(encoded,decoded,errors,bytes,max_au)=[(29, 29, 0, 30540068, 1062313), (29, 29, 0, 50939073, 1777489), (32, 32, 0, 54559469, 1723346), (32, 32, 0, 51024809, 1602168), (32, 32, 0, 40113534, 1260871), (29, 29, 0, 36722332, 1276723)] bytes=344063999 gaps=12 replay=1856 feedback=240\nt=27s cameras(encoded,decoded,errors,bytes,max_au)=[(30, 29, 0, 31603161, 1063093), (30, 29, 0, 52704791, 1777489), (33, 33, 0, 56275556, 1723346), (33, 33, 0, 52629545, 1604736), (32, 32, 0, 40113534, 1260871), (29, 29, 0, 36722332, 1276723)] bytes=370387891 gaps=13 replay=1892 feedback=247\nt=28s cameras(encoded,decoded,errors,bytes,max_au)=[(32, 31, 0, 33734690, 1066697), (32, 32, 0, 56238556, 1777489), (35, 35, 0, 59709324, 1723346), (35, 34, 0, 55839020, 1606133), (34, 34, 0, 42621245, 1260871), (31, 31, 0, 39254355, 1276723)] bytes=394564176 gaps=13 replay=2011 feedback=257\nt=29s cameras(encoded,decoded,errors,bytes,max_au)=[(34, 33, 0, 35862236, 1066697), (34, 34, 0, 59774041, 1777489), (37, 37, 0, 63148787, 1723346), (37, 36, 0, 59041609, 1606133), (36, 36, 0, 45126640, 1260871), (33, 33, 0, 41789033, 1276723)] bytes=416383200 gaps=13 replay=2129 feedback=267\nt=30s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427100138 gaps=13 replay=2189 feedback=277\nt=31s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427147222 gaps=13 replay=2189 feedback=287\nt=32s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=297\nt=33s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=306\nt=34s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=317\nt=35s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=326\nt=36s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=336\nt=37s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=346\nt=38s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=356\nt=39s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=366\nt=40s cameras(encoded,decoded,errors,bytes,max_au)=[(35, 35, 0, 36925483, 1066697), (35, 35, 0, 61549475, 1777489), (38, 38, 0, 64871901, 1723346), (38, 38, 0, 60641746, 1606133), (37, 37, 0, 46379183, 1260871), (35, 35, 0, 44328865, 1276723)] bytes=427158993 gaps=13 replay=2189 feedback=376\nfinal CuTwinStatus { latest: Some(2369), recovery_point: Some(2340), gaps: 13, packets: 368131, archived: 2312, structured_logs: 0, identity: Some(StreamIdentity { session_id: [194, 100, 112, 9, 16, 104, 158, 140, 95, 121, 2, 172, 124, 70, 255, 22], sender_id: 0 }), last_packet: Some(Instant { tv_sec: 18904, tv_nsec: 122868043 }), state: Closed, twin: TwinStatus { state: Reconstructed, reconstructed: 2189, verified: 0, divergences: 0, queue_overflows: 0 }, feedback_reports_sent: 376, feedback_reports_dropped: 0, feedback_failed: false }\n",
+  "stream_commands": {
+    "sender": "/data/dev/bin/dev-shell just nvmedia --seconds 20",
+    "station": "target/release/telemetry-station --headless --seconds 40 --max-record-mib 64 --feedback-to 192.168.1.236:7448 --archive logs/nvmedia-validation-20261019-v6.copper",
+    "returncodes": {
+      "sender": 0,
+      "station": 0
+    }
+  },
+  "stream_summary": {
+    "camera_counters_encoded_decoded_errors_bytes_max_au": [
+      [
+        35,
+        35,
+        0,
+        36925483,
+        1066697
+      ],
+      [
+        35,
+        35,
+        0,
+        61549475,
+        1777489
+      ],
+      [
+        38,
+        38,
+        0,
+        64871901,
+        1723346
+      ],
+      [
+        38,
+        38,
+        0,
+        60641746,
+        1606133
+      ],
+      [
+        37,
+        37,
+        0,
+        46379183,
+        1260871
+      ],
+      [
+        35,
+        35,
+        0,
+        44328865,
+        1276723
+      ]
+    ],
+    "gaps": 13,
+    "sender_inbox_drops": 6,
+    "feedback": "Active",
+    "twin_queue_overflows": 0,
+    "lossless_delivery_validated": false
+  },
+  "workstation_validation": {
+    "clippy": {
+      "command": "cargo clippy --workspace --all-targets --all-features -- -D warnings",
+      "returncode": 0,
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo)\n    Checking telemetry-station v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo/telemetry-station)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.36s\n"
+    },
+    "new_unit_tests": {
+      "command": "cargo test --features nvmedia --lib",
+      "returncode": 0,
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.23s\n     Running unittests src/lib.rs (target/debug/deps/cu_multistream_telemetry_demo-a5c50cd3600999c2)\n\nrunning 1 test\ntest nvmedia::tests::test_uyvy_preserves_extremes_chroma_and_padded_rows ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    "doc_tests": {
+      "command": "cargo test --features nvmedia --doc",
+      "returncode": 0,
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s\n   Doc-tests cu_multistream_telemetry_demo\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+    },
+    "existing_copy_buffer_test": {
+      "command": "cargo test --features nvmedia --test capture_buffers",
+      "returncode": 101,
+      "cause": "Workstation sibling Copper checkout lacks the pre-existing copy_buffers implementation; Delta has it and passes this test.",
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.07s\n     Running tests/capture_buffers.rs (target/debug/deps/capture_buffers-90282fc9b21fc4b8)\n\nrunning 1 test\ntest captured_bytes_survive_source_shutdown_in_both_modes ... FAILED\n\nfailures:\n\n---- captured_bytes_survive_source_shutdown_in_both_modes stdout ----\n\nthread 'captured_bytes_survive_source_shutdown_in_both_modes' (196192) panicked at tests/capture_buffers.rs:36:9:\nassertion `left == right` failed\n  left: false\n right: true\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n\n\nfailures:\n    captured_bytes_survive_source_shutdown_in_both_modes\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s\n\nerror: test failed, to rerun pass `--test capture_buffers`\n"
+    }
+  }
+}

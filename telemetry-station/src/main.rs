@@ -25,6 +25,9 @@ struct Args {
     /// Copper log base path. Default: logs/telemetry-<timestamp>.copper.
     #[arg(long)]
     archive: Option<PathBuf>,
+    /// Largest complete Copper record accepted (use 64 for the NvMedia backend).
+    #[arg(long, default_value_t = 16, value_parser = clap::value_parser!(u32).range(1..=64))]
+    max_record_mib: u32,
     #[arg(long)]
     headless: bool,
     #[arg(long, default_value_t = 0)]
@@ -177,14 +180,14 @@ impl Receiver {
         let shared = Arc::new(Shared::new());
         let mut socket = CuUdpLogStreamConfig::new(args.listen);
         socket.remote_addr = Some(args.feedback_to);
-        socket.recv_buffer_bytes = Some(16 * 1024 * 1024);
+        socket.recv_buffer_bytes = Some((args.max_record_mib as usize).max(16) * 1024 * 1024);
         let (feedback, rx) = socket.open()?;
         let rx = CountedRx {
             rx,
             bytes: shared.bytes.clone(),
         };
         let limits = SessionRouterLimits {
-            max_record_bytes: 16 * 1024 * 1024,
+            max_record_bytes: args.max_record_mib as usize * 1024 * 1024,
             max_buffered_records: 64,
             ..Default::default()
         };
@@ -202,7 +205,7 @@ impl Receiver {
             .with_feedback(feedback.ok_or("feedback transport")?)
             .with_log_path(&archive)
             .with_receiver_limits(limits)
-            .with_section_size(17 * 1024 * 1024)
+            .with_section_size((args.max_record_mib as usize + 1) * 1024 * 1024)
             .with_slab_size(1024 * 1024 * 1024)
             .with_replay_capacity(128.try_into()?)
             .with_frame_capacity(32.try_into()?)

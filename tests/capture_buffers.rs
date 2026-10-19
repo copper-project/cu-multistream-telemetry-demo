@@ -13,7 +13,10 @@ fn captured_bytes_survive_source_shutdown_in_both_modes() {
         );
         config.set("caps", "application/octet-stream".to_owned());
         if copy {
-            config.set("copy_buffers", true);
+            config.set(
+                "copy_buffers",
+                ron::from_str::<cu29::config::Value>("Value(true)").unwrap(),
+            );
         }
         let mut source = CuGStreamer::<2>::new(Some(&config), ()).unwrap();
         let ctx = CuContext::new_with_clock();

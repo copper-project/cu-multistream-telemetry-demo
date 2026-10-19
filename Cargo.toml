@@ -33,6 +33,12 @@ server = []
 twin = []
 lossless = []
 near-lossless = []
+nvmedia = [
+  "dep:libloading",
+  "dep:gstreamer",
+  "dep:gstreamer-app",
+  "dep:gstreamer-video",
+]
 
 [dependencies]
 cu29.workspace = true
@@ -41,6 +47,11 @@ cu29-logstream-udp.workspace = true
 cu-gstreamer.workspace = true
 clap.workspace = true
 ctrlc = "3.5"
+ron = "0.12"
+libloading = { version = "0.8.9", optional = true }
+gstreamer = { version = "0.25", optional = true }
+gstreamer-app = { version = "0.25", features = ["v1_20"], optional = true }
+gstreamer-video = { version = "0.25", optional = true }
 
 [build-dependencies]
 cu29-build.workspace = true
@@ -49,3 +60,13 @@ cu29-build.workspace = true
 name = "cu-multistream-telemetry-demo"
 path = "src/main.rs"
 required-features = ["server"]
+
+[[bin]]
+name = "nvmedia-check"
+path = "src/bin/nvmedia-check.rs"
+required-features = ["nvmedia"]
+
+[[bin]]
+name = "nvmedia-record"
+path = "src/bin/nvmedia-record.rs"
+required-features = ["nvmedia"]

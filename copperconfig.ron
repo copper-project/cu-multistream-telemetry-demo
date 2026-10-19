@@ -59,7 +59,7 @@
     tasks: [
         (
             id: "cam0",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
@@ -67,7 +67,7 @@
         ),
         (
             id: "cam1",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
@@ -75,7 +75,7 @@
         ),
         (
             id: "cam2",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
@@ -83,7 +83,7 @@
         ),
         (
             id: "cam3",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
@@ -91,7 +91,7 @@
         ),
         (
             id: "cam4",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
@@ -99,7 +99,7 @@
         ),
         (
             id: "cam5",
-            type: "cu_gstreamer::CuGStreamer<2>",
+            type: "cu_multistream_telemetry_demo::CameraSource",
             config: {
                 "pipeline": "unused",
                 "caps": "video/x-h265,stream-format=byte-stream,alignment=au",
