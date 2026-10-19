@@ -22,6 +22,9 @@ typedef struct {
     uint8_t major, minor, patch;
 } IepVersion;
 typedef struct {
+    uint16_t width, height;
+} Resolution;
+typedef struct {
     uint32_t key;
     const void *value;
     size_t len;
@@ -151,6 +154,7 @@ enum {
     X(Iep, NvMediaIEPCreate, (int, const void *, BufAttrs, uint8_t, int))                          \
     X(void, NvMediaIEPDestroy, (Iep))                                                              \
     X(int, NvMediaIEPSetConfiguration, (Iep, const void *))                                        \
+    X(int, NvMediaIEPSetAttribute, (Iep, int, uint32_t, const void *))                             \
     X(int, NvMediaIEPRegisterNvSciBufObj, (Iep, Buf))                                              \
     X(int, NvMediaIEPUnregisterNvSciBufObj, (Iep, Buf))                                            \
     X(int, NvMediaIEPFillNvSciSyncAttrList, (Iep, SyncAttrs, int))                                 \

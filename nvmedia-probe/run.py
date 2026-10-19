@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Encode one shared synthetic YUV444 frame with NvMedia IEP; verify decoded bytes."""
+"""Encode shared synthetic YUV444 frames with NvMedia IEP; verify decoded bytes."""
 
 import argparse
 import hashlib
@@ -22,9 +22,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path)
     parser.add_argument("--bits", type=int, choices=range(1, 9), default=4)
+    parser.add_argument("--frames", type=int, choices=range(1, 121), default=1)
     parser.add_argument("--size", choices=["1920x1080", "1280x720", "320x256"], default="1920x1080")
     parser.add_argument("--capacity-mib", type=int, choices=range(1, 257), default=64)
     parser.add_argument("--mode", choices=["lossless", "control"], default="lossless")
+    parser.add_argument("--reserve-size", choices=["1920x1080", "1920x1536", "3840x2160"])
+    parser.add_argument("--memory-optimization", action="store_true")
     args = parser.parse_args()
     for tool in ("cc", "gst-launch-1.0"):
         if not shutil.which(tool):
@@ -35,7 +38,10 @@ def main():
     args.output.mkdir(parents=True, exist_ok=False)
     source = Path(__file__).resolve().parent
     width, height = map(int, args.size.split("x"))
-    frame = random.Random(0).randbytes(width * height * 3)
+    initial_width, initial_height = map(int, (args.reserve_size or args.size).split("x"))
+    if initial_width < width or initial_height < height:
+        parser.error("reserve dimensions must cover active dimensions")
+    frame = random.Random(0).randbytes(width * height * 3 * args.frames)
     if args.bits < 8:
         frame = frame.translate(bytes(16 + (value & ((1 << args.bits) - 1)) for value in range(256)))
     input_path = args.output / "input.y444"
@@ -48,7 +54,8 @@ def main():
         ["cc", "-std=c11", "-O2", "-g", "-Wall", "-Wextra", "-Werror", "-Wpedantic",
          str(source / "probe.c"), "-ldl", "-o", str(binary)],
         [str(binary), str(input_path), str(encoded), str(upload), str(width), str(height),
-         str(args.capacity_mib * 1024 * 1024), args.mode],
+         str(args.capacity_mib * 1024 * 1024), args.mode, str(initial_width), str(initial_height),
+         "1" if args.memory_optimization else "0", str(args.frames)],
         ["gst-launch-1.0", "-e", "-f", "-v", "filesrc", f"location={encoded}",
          "!", "h265parse", "!", "avdec_h265", "!", "video/x-raw,format=Y444",
          "!", "filesink", f"location={decoded}", "sync=false"],
@@ -56,7 +63,9 @@ def main():
     (args.output / "commands.sh").write_text("\n".join(shlex.join(cmd) for cmd in commands) + "\n")
     summary = {
         "mode": args.mode, "bits": args.bits, "width": width, "height": height,
-        "frames": 1, "capacity_bytes": args.capacity_mib * 1024 * 1024,
+        "initial_width": initial_width, "initial_height": initial_height,
+        "memory_optimization": args.memory_optimization,
+        "frames": args.frames, "capacity_bytes": args.capacity_mib * 1024 * 1024,
         "input_bytes": len(frame), "input_sha256": sha256(input_path),
         "source_sha256": {name: sha256(source / name) for name in ("probe.c", "iep_compat.h", "run.py")},
         "uname": list(os.uname()), "stages": [], "passed": False,
@@ -78,6 +87,8 @@ def main():
                                       "seconds": round(time.monotonic() - started, 3)})
             content = (args.output / f"{stage}.log").read_text(errors="replace")
             if stage == "encode":
+                summary["frame_bytes"] = [int(value) for value in re.findall(r"^encoded_bytes=(\d+)", content, re.M)]
+                summary["encoded_frames"] = len(summary["frame_bytes"])
                 summary["api_calls"] = re.findall(r"^call=(.+) status=(0x[0-9a-f]+)$", content, re.M)
                 summary["v4l2_or_gstreamer_loaded"] = (
                     "v4l2_or_gstreamer_loaded=true" in content

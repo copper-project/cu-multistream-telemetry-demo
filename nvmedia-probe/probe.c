@@ -117,10 +117,12 @@ static unsigned parse_number(const char *text, unsigned maximum) {
 
 int main(int argc, char **argv) {
     setvbuf(stdout, NULL, _IONBF, 0);
-    if (argc != 8 || (strcmp(argv[7], "lossless") && strcmp(argv[7], "control"))) {
+    if ((argc != 8 && argc != 11 && argc != 12) ||
+        (strcmp(argv[7], "lossless") && strcmp(argv[7], "control"))) {
         fprintf(stderr,
                 "usage: %s input.y444 encoded.h265 upload.y444 width height "
-                "capacity lossless|control\n",
+                "capacity lossless|control [initial-width initial-height memory-optimization "
+                "[frames]]\n",
                 argv[0]);
         return 2;
     }
@@ -128,6 +130,15 @@ int main(int argc, char **argv) {
     uint32_t capacity = parse_number(argv[6], 256 * 1024 * 1024);
     if (!width || !height || !capacity || width % 32 || height % 2)
         return 2;
+    uint32_t initial_width = argc >= 11 ? parse_number(argv[8], 4096) : width;
+    uint32_t initial_height = argc >= 11 ? parse_number(argv[9], 4096) : height;
+    uint32_t frames = argc == 12 ? parse_number(argv[11], 120) : 1;
+    bool memory_optimization = argc >= 11 && !strcmp(argv[10], "1");
+    if (initial_width < width || initial_height < height || initial_width % 32 ||
+        initial_height % 2 || !frames ||
+        (argc >= 11 && strcmp(argv[10], "0") && strcmp(argv[10], "1")))
+        return 2;
+    bool reserve = initial_width != width || initial_height != height;
     if (load_api() != 0)
         return 1;
 
@@ -135,6 +146,9 @@ int main(int argc, char **argv) {
     BufModule module = NULL;
     BufAttrs request = NULL, reconciled = NULL, conflict = NULL, actual = NULL;
     Buf image = NULL;
+    BufAttrs reserve_request = NULL, reserve_reconciled = NULL, reserve_conflict = NULL;
+    BufAttrs reserve_actual = NULL;
+    Buf reserve_image = NULL;
     SyncModule sync_module = NULL;
     Sync pre = NULL, eof = NULL;
     WaitContext waiter = NULL;
@@ -173,13 +187,15 @@ int main(int argc, char **argv) {
         goto cleanup;
     printf("output_allocated_bytes=%u guard_pages=2\n", capacity);
 
-    input = malloc(input_size);
-    readback = malloc(input_size);
+    size_t total_input_size = input_size * frames;
+    input = malloc(total_input_size);
+    readback = malloc(total_input_size);
     if (!input || !readback)
         goto cleanup;
     file = fopen(argv[1], "rb");
-    if (!file || fread(input, 1, input_size, file) != input_size || fgetc(file) != EOF) {
-        fprintf(stderr, "expected exactly %zu input bytes\n", input_size);
+    if (!file || fread(input, 1, total_input_size, file) != total_input_size ||
+        fgetc(file) != EOF) {
+        fprintf(stderr, "expected exactly %zu input bytes\n", total_input_size);
         goto cleanup;
     }
     fclose(file);
@@ -254,18 +270,40 @@ int main(int argc, char **argv) {
     file = NULL;
     printf("upload_exact=true\n");
 
+    if (reserve) {
+        CHECK(api.NvSciBufAttrListCreate(module, &reserve_request));
+        CHECK(api.NvMediaIEPFillNvSciBufAttrList(0, reserve_request));
+        for (size_t index = 0; index < sizeof(attrs) / sizeof(attrs[0]); ++index) {
+            Attr attribute = attrs[index];
+            if (attribute.key == SURFACE_WIDTH)
+                attribute.value = &initial_width;
+            if (attribute.key == SURFACE_HEIGHT)
+                attribute.value = &initial_height;
+            CHECK(api.NvSciBufAttrListSetAttrs(reserve_request, &attribute, 1));
+        }
+        CHECK(api.NvSciBufAttrListReconcile(&reserve_request, 1, &reserve_reconciled,
+                                            &reserve_conflict));
+        CHECK(api.NvSciBufObjAlloc(reserve_reconciled, &reserve_image));
+        CHECK(api.NvSciBufObjGetAttrList(reserve_image, &reserve_actual));
+    }
     InitH265 init = {0};
-    init.width = (uint16_t)width;
-    init.height = (uint16_t)height;
+    init.width = (uint16_t)initial_width;
+    init.height = (uint16_t)initial_height;
     init.fps_num = 15;
     init.fps_den = 1;
     init.profile = PROFILE_REXT;
     init.max_refs = 1;
-    init.disable_memory_optimization = 1;
-    iep = api.NvMediaIEPCreate(CODEC_HEVC, &init, actual, 4, 0);
+    init.disable_memory_optimization = !memory_optimization;
+    printf("initial_dimensions=%ux%u active_dimensions=%ux%u memory_optimization=%d\n",
+           initial_width, initial_height, width, height, memory_optimization);
+    iep = api.NvMediaIEPCreate(CODEC_HEVC, &init, reserve ? reserve_actual : actual, 4, 0);
     printf("encoder_created=%s\n", iep ? "true" : "false");
     if (!iep)
         goto cleanup;
+    if (reserve) {
+        Resolution resolution = {.width = (uint16_t)width, .height = (uint16_t)height};
+        CHECK(api.NvMediaIEPSetAttribute(iep, 0, sizeof(resolution), &resolution));
+    }
     ConfigH265 config = {0};
     config.features = FEATURE_AUD | (lossless ? FEATURE_LOSSLESS : 0);
     config.gop = 1;
@@ -288,39 +326,67 @@ int main(int argc, char **argv) {
     CHECK(api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof));
     eof_registered = true;
     CHECK(api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof));
-    CHECK(api.NvSciSyncObjGenerateFence(pre, &pre_fence));
-    CHECK(api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence));
-    CHECK(api.NvSciSyncObjSignal(pre));
-    PictureH265 picture = {0};
-    picture.type = PIC_IDR;
-    picture.flags = PIC_HEADERS;
-    picture.rc = config.rc;
-    picture.fps_num = 15;
-    picture.fps_den = 1;
-    CHECK(api.NvMediaIEPFeedFrame(iep, image, &picture, 0));
-    submitted = true;
-    CHECK(api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence));
-    CHECK(api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000));
-    completed = true;
-    uint32_t available = 0, used = 0;
-    CHECK(api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000));
-    printf("available_bytes=%u capacity_bytes=%u\n", available, capacity);
-    if (!available || available > capacity)
-        goto cleanup;
-    Bitstream stream = {.data = output + page, .capacity = capacity};
-    CHECK(api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL));
-    printf("encoded_bytes=%u bitstream_bytes=%u\n", used, stream.used);
-    /* This runtime leaves bitstreamBytes at zero; numBytes is authoritative. */
-    if (used != available || used > capacity || (stream.used && used != stream.used))
-        goto cleanup;
-    file = fopen(argv[2], "wbx");
-    if (!file || fwrite(stream.data, 1, used, file) != used)
-        goto cleanup;
-    if (fclose(file) != 0) {
+    for (uint32_t frame_index = 0; frame_index < frames; ++frame_index) {
+        printf("frame_index=%u\n", frame_index);
+        if (frame_index) {
+            size_t offset = frame_index * input_size;
+            for (size_t plane = 0; plane < 3; ++plane) {
+                src[plane] = input + offset + plane * plane_size;
+                dst[plane] = readback + offset + plane * plane_size;
+            }
+            CHECK(api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches));
+            if (flush)
+                CHECK(api.NvSciBufObjFlushCpuCacheRange(image, 0, image_bytes));
+            CHECK(api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches));
+            if (memcmp(input + offset, readback + offset, input_size))
+                goto cleanup;
+            file = fopen(argv[3], "ab");
+            if (!file || fwrite(readback + offset, 1, input_size, file) != input_size)
+                goto cleanup;
+            if (fclose(file) != 0) {
+                file = NULL;
+                goto cleanup;
+            }
+            file = NULL;
+        }
+        CHECK(api.NvSciSyncObjGenerateFence(pre, &pre_fence));
+        CHECK(api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence));
+        CHECK(api.NvSciSyncObjSignal(pre));
+        PictureH265 picture = {0};
+        picture.type = PIC_IDR;
+        picture.flags = PIC_HEADERS;
+        picture.rc = config.rc;
+        picture.fps_num = 15;
+        picture.fps_den = 1;
+        submitted = false;
+        completed = false;
+        CHECK(api.NvMediaIEPFeedFrame(iep, image, &picture, 0));
+        submitted = true;
+        CHECK(api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence));
+        CHECK(api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000));
+        completed = true;
+        uint32_t available = 0, used = 0;
+        CHECK(api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000));
+        printf("available_bytes=%u capacity_bytes=%u\n", available, capacity);
+        if (!available || available > capacity)
+            goto cleanup;
+        Bitstream stream = {.data = output + page, .capacity = capacity};
+        CHECK(api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL));
+        printf("encoded_bytes=%u bitstream_bytes=%u\n", used, stream.used);
+        /* This runtime leaves bitstreamBytes at zero; numBytes is authoritative. */
+        if (used != available || used > capacity || (stream.used && used != stream.used))
+            goto cleanup;
+        file = fopen(argv[2], frame_index ? "ab" : "wbx");
+        if (!file || fwrite(stream.data, 1, used, file) != used)
+            goto cleanup;
+        if (fclose(file) != 0) {
+            file = NULL;
+            goto cleanup;
+        }
         file = NULL;
-        goto cleanup;
+        api.NvSciSyncFenceClear(&pre_fence);
+        api.NvSciSyncFenceClear(&eof_fence);
     }
-    file = NULL;
     if (mapped_libraries())
         goto cleanup;
     result = 0;
@@ -352,6 +418,14 @@ cleanup:
             api.NvSciSyncModuleClose(sync_module);
         if (image)
             api.NvSciBufObjFree(image);
+        if (reserve_image)
+            api.NvSciBufObjFree(reserve_image);
+        if (reserve_conflict)
+            api.NvSciBufAttrListFree(reserve_conflict);
+        if (reserve_reconciled)
+            api.NvSciBufAttrListFree(reserve_reconciled);
+        if (reserve_request)
+            api.NvSciBufAttrListFree(reserve_request);
         if (conflict)
             api.NvSciBufAttrListFree(conflict);
         if (reconciled)
