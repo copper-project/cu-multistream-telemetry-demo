@@ -326,6 +326,8 @@ describes NV24 hardware encoding. The robot's NVIDIA driver/plugin was not repla
 ## NvMedia lossless alternative
 
 The [Rust NvMedia backend](NVMEDIA.md) uses the verified buffer-reservation
-workaround and supports local six-camera Copper recording and UDP streaming.
-Start with `just record --output logs/nvmedia-trial.copper --seconds 30` on Delta;
-the initial default is 2 fps per camera.
+workaround with camera DMA import, CUDA conversion into shared encoder surfaces,
+and three frames in flight. It supports local six-camera Copper recording and UDP
+streaming, with a default of 15 fps per camera. Start with
+`just record --output logs/nvmedia-trial.copper --seconds 30` on Delta.
+See the backend documentation for measured throughput and byte-exact validation.

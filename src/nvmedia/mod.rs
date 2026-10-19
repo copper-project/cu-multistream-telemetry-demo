@@ -1,6 +1,7 @@
 //! Rust NvMedia IEP backend with a 4K bitstream reservation for lossless 1080p.
 mod encoder;
 mod ffi;
+mod gpu;
 use cu_gstreamer::CuGstBuffer;
 use cu29::prelude::*;
 pub use encoder::EncodeTimings;
@@ -15,7 +16,7 @@ use std::thread::JoinHandle;
 /// Capture native UYVY without passing through NVIDIA's V4L2 encoder/converter.
 pub fn capture_pipeline(device: &str, fps: u32) -> String {
     format!(
-        "v4l2src device={device} do-timestamp=true ! video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1 ! videorate drop-only=true ! video/x-raw,framerate={fps}/1 ! appsink name=copper sync=false max-buffers=2 drop=true wait-on-eos=false"
+        "v4l2src device={device} io-mode=dmabuf do-timestamp=true ! video/x-raw,format=UYVY,width=1920,height=1080,framerate=30/1 ! videorate drop-only=true ! video/x-raw,framerate={fps}/1 ! appsink name=copper sync=false max-buffers=2 drop=true wait-on-eos=false"
     )
 }
 
@@ -96,7 +97,7 @@ struct WorkerState {
     error: Option<String>,
 }
 
-/// Copper camera source: bounded raw capture, one encoder worker, two encoded frames.
+/// Copper camera source: DMA capture, three shared GPU input slots, two encoded frames.
 #[derive(Reflect)]
 #[reflect(from_reflect = false)]
 pub struct CuNvMediaSource {
@@ -244,7 +245,6 @@ fn capture(
         .bus()
         .ok_or(CuError::from("Camera bus unavailable"))?;
     let mut encoder = Encoder::new(fps)?;
-    let mut planar = vec![0; 1920 * 1080 * 3];
     pipeline
         .0
         .set_state(gstreamer::State::Playing)
@@ -252,6 +252,20 @@ fn capture(
     let mut ready_sent = false;
     let mut last_frame = std::time::Instant::now();
     while !stop.load(Ordering::Relaxed) {
+        encoder.reclaim_inputs()?;
+        // Preserve the encoded reference chain, including startup's first IDR.
+        // If Copper falls behind, let appsink discard raw frames before encoding.
+        if state
+            .lock()
+            .map_err(|_| CuError::from("Camera worker lock poisoned"))?
+            .queue
+            .len()
+            == 2
+        {
+            last_frame = std::time::Instant::now();
+            std::thread::park_timeout(std::time::Duration::from_millis(2));
+            continue;
+        }
         while let Some(message) = bus.pop() {
             if let gstreamer::MessageView::Error(error) = message.view() {
                 return Err(CuError::from(format!(
@@ -270,18 +284,17 @@ fn capture(
             }
             continue;
         };
-        sample_to_y444(&sample, &mut planar)?;
-        drop(sample);
-        let mut encoded = Vec::new();
-        encoder.encode(&mut planar, &mut encoded)?;
+        encoder.submit_sample(&sample)?;
+        if encoder.queued() < encoder.capacity() {
+            continue;
+        }
+        let mut encoded = Arc::<[u8]>::default();
+        encoder.receive(&mut encoded)?;
         last_frame = std::time::Instant::now();
         let mut state = state
             .lock()
             .map_err(|_| CuError::from("Camera worker lock poisoned"))?;
-        if state.queue.len() == 2 {
-            state.queue.pop_front();
-        }
-        state.queue.push_back(CuGstBuffer::Replay(encoded.into()));
+        state.queue.push_back(CuGstBuffer::Replay(encoded));
         if !ready_sent {
             ready
                 .send(Ok(()))

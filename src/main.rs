@@ -12,7 +12,7 @@ struct Args {
     remote: SocketAddr,
     #[arg(long, default_value = "0.0.0.0:7448")]
     bind: SocketAddr,
-    /// Camera frame rate (default: 2 NvMedia, 15 near-lossless/lossless, 30 CBR).
+    /// Camera frame rate (default: 15 NvMedia/near-lossless/lossless, 30 CBR).
     #[arg(long, value_parser = clap::value_parser!(u32).range(1..=30))]
     fps: Option<u32>,
     /// Experimental lossless encoding with immediate encoded-buffer copying.
@@ -59,7 +59,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let (default_fps, default_link_mbps, default_latency_ms) = match encoding {
         Encoding::Cbr { .. } => (30, 200, 120),
         Encoding::NearLossless { .. } => (15, 2000, 800),
-        Encoding::Lossless => (if cfg!(feature = "nvmedia") { 2 } else { 15 }, 900, 800),
+        Encoding::Lossless => (15, 900, 800),
     };
     let fps = args.fps.unwrap_or(default_fps);
     let link_mbps = args.link_mbps.unwrap_or(default_link_mbps);

@@ -1,0 +1,586 @@
+{
+  "date": "2026-10-19",
+  "platform": "Delta, Tegra234, L4T R39.2.1",
+  "baseline": {
+    "six_camera_fps": 2,
+    "cpu_upload_mean_us": 61896.1,
+    "evidence": "rust-demo-2026-10-19.json"
+  },
+  "cuda_abi": {
+    "MemoryDesc": 104,
+    "BufferDesc": 88,
+    "ArrayDesc": 40,
+    "MipmapDesc": 120,
+    "ResourceDesc": 144,
+    "SemaphoreDesc": 96,
+    "SignalParams": 144,
+    "signal_fence_offset": 8,
+    "memory_size_offset": 24,
+    "checked_against": "installed CUDA 13.2 header using cc"
+  },
+  "camera_validation": {
+    "frames": 60,
+    "original_uyvy_exact": true,
+    "files": {
+      "reference.y444": {
+        "bytes": 373248000,
+        "sha256": "a77f8b3e8c0526f2bcead3d36671f4c6113fb90a5bf5ab45fab758536df585d8"
+      },
+      "upload.y444": {
+        "bytes": 373248000,
+        "sha256": "a77f8b3e8c0526f2bcead3d36671f4c6113fb90a5bf5ab45fab758536df585d8"
+      },
+      "decoded.y444": {
+        "bytes": 373248000,
+        "sha256": "a77f8b3e8c0526f2bcead3d36671f4c6113fb90a5bf5ab45fab758536df585d8"
+      },
+      "reference.uyvy": {
+        "bytes": 248832000,
+        "sha256": "e27181e6a35fd82923c28ea88f1aa475533791525fd9cc388219473d7c1fc809"
+      },
+      "stream.h265": {
+        "bytes": 60678856,
+        "sha256": "abb174ed4d95b587c3b0ff885d7ef75d69bc62c4fca757ef571ff5492b6a7869"
+      }
+    }
+  },
+  "six_camera_encode_benchmark": {
+    "results": [
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port0/sensor0 frames=180 elapsed_seconds=10.857 fps=16.487 bytes=149239236 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor0 frames=180 elapsed_seconds=11.089 fps=16.142 bytes=241695508 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor1 frames=180 elapsed_seconds=11.106 fps=16.118 bytes=229230018 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor2 frames=180 elapsed_seconds=11.120 fps=16.096 bytes=217299874 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des1/port0/sensor0 frames=180 elapsed_seconds=11.115 fps=16.105 bytes=175162521 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des1/port0/sensor1 frames=180 elapsed_seconds=11.077 fps=16.159 bytes=177736154 raw_cpu_maps=0\n",
+        "stderr": ""
+      }
+    ],
+    "nvenc": [
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      }
+    ]
+  },
+  "timings_and_synthetic_validation": {
+    "cu-gpu-synthetic-final-30": {
+      "frames": 30,
+      "stage_us": {
+        "upload_us": {
+          "median": 890.0,
+          "mean": 917.6818181818181
+        },
+        "encode_us": {
+          "median": 79049.5,
+          "mean": 78852.95454545454
+        },
+        "retrieve_us": {
+          "median": 1076.5,
+          "mean": 1575.2272727272727
+        }
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,8269068,7769,82655,12039\n1,8353862,952,71671,17364\n2,8354707,870,79438,5526\n3,8354115,902,75372,4523\n4,8354731,897,76190,1467\n5,8354438,891,71602,1169\n6,8354907,863,70541,1140\n7,8354710,885,68578,7776\n8,8353150,890,70453,1155\n9,8353127,888,78147,1140\n10,8351984,862,78272,962\n11,8352055,867,79684,960\n12,8352920,904,79278,11090\n13,8352858,900,82878,1540\n14,8352118,876,78821,1144\n15,8353665,970,82460,1446\n16,8356191,951,77377,1174\n17,8352668,926,77422,1156\n18,8355435,1127,80348,975\n19,8351677,887,81266,973\n20,8354897,1028,80148,979\n21,8352180,971,80792,987\n22,8353418,944,79546,1051\n23,8352010,878,77557,1010\n24,8352531,887,79630,954\n25,8352845,910,79707,950\n26,8353472,886,77616,1401\n27,8352600,890,77632,1046\n28,8351125,876,77695,1102\n29,8352981,871,78036,1460\n",
+      "files": {
+        "reference.y444": {
+          "bytes": 186624000,
+          "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+        },
+        "upload.y444": {
+          "bytes": 186624000,
+          "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+        },
+        "decoded.y444": {
+          "bytes": 186624000,
+          "sha256": "6a09b0280cc8fb86fedcd28a5b747c509f9520d73bf815497b3a138797310502"
+        },
+        "stream.h265": {
+          "bytes": 250516445,
+          "sha256": "eb3c86bad3d784eda00c7164a16980bba0225657b3af43ac5a7445ce9793ff2b"
+        }
+      }
+    },
+    "cu-gpu-queued-cache-2": {
+      "frames": 60,
+      "stage_us": {
+        "upload_us": {
+          "median": 128.0,
+          "mean": 143.23076923076923
+        },
+        "encode_us": {
+          "median": 328283.0,
+          "mean": 324915.1346153846
+        },
+        "retrieve_us": {
+          "median": 141.0,
+          "mean": 143.65384615384616
+        }
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,763,1227,208031,49\n1,1254777,832,274057,777\n2,1245563,831,344460,726\n3,1167870,685,347146,668\n4,1104290,1216,341095,650\n5,1085682,665,336193,150\n6,1075633,820,329573,147\n7,1046744,151,328180,223\n8,1046505,134,328286,143\n9,1047546,133,328345,145\n10,1036813,134,328016,146\n11,1030625,131,328199,154\n12,1037689,145,328755,158\n13,1042478,128,328526,144\n14,1035353,127,328053,141\n15,1030306,128,328280,141\n16,1031695,142,328451,143\n17,1028073,126,328184,143\n18,1001197,644,327681,138\n19,1033686,129,327736,142\n20,1018945,124,328112,144\n21,1021262,140,327805,143\n22,1015918,127,327678,143\n23,1030357,129,328092,142\n24,1009451,122,329934,142\n25,1028101,145,330687,143\n26,1024114,127,329191,142\n27,1017584,122,327995,141\n28,1024781,123,327820,143\n29,1003398,125,328451,139\n30,1060301,139,328751,145\n31,1002749,126,328924,139\n32,1006555,125,328590,139\n33,1000982,125,328069,139\n34,1002910,147,327918,140\n35,1002450,123,328084,151\n36,1005034,123,328314,141\n37,1005129,123,328321,140\n38,1004763,153,328258,140\n39,1001685,124,327984,138\n40,1004652,121,328079,138\n41,981703,124,328487,137\n42,1005649,124,328363,142\n43,1004737,138,328428,140\n44,1000693,124,328369,140\n45,998142,123,328117,141\n46,997313,122,327860,140\n47,1003346,141,328481,140\n48,1003958,125,330368,141\n49,1001953,123,336887,182\n50,997994,123,370453,156\n51,1002325,144,360639,137\n52,1001523,170,321286,140\n53,1010387,138,320306,140\n54,981243,140,322197,137\n55,1001234,135,330613,142\n56,1001044,181,337270,139\n57,1003978,142,337297,162\n58,1003544,176,243911,141\n59,1003681,141,150686,163\n"
+    },
+    "cu-gpu-sixbench-gop-cam0": {
+      "frames": 180,
+      "stage_us": {
+        "upload_us": {
+          "median": 61.0,
+          "mean": 70.72093023255815
+        },
+        "encode_us": {
+          "median": 193362.5,
+          "mean": 182342.84302325582
+        },
+        "retrieve_us": {
+          "median": 103.5,
+          "mean": 115
+        }
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,763,22878,14683,48\n1,1467571,992,16750,1214\n2,855030,977,46187,740\n3,609983,737,66200,440\n4,2226819,819,66056,1357\n5,1155268,76,67015,148\n6,1047083,67,66805,248\n7,1230171,72,66597,409\n8,1165094,55,66992,145\n9,1079852,56,66826,150\n10,937512,65,66497,119\n11,1146941,56,66799,145\n12,1094846,63,67040,163\n13,1020807,51,66823,134\n14,918388,129,67025,119\n15,936554,97,66780,120\n16,952963,109,66602,124\n17,949359,76,87090,127\n18,910989,90,74389,119\n19,977023,58,88021,132\n20,944987,51,88685,130\n21,980307,65,89352,131\n22,943236,52,87993,126\n23,977686,52,86621,156\n24,948691,52,85533,135\n25,952111,76,84449,128\n26,890896,77,93926,135\n27,832795,74,181892,128\n28,797659,87,179305,110\n29,772233,153,194536,105\n30,1074495,109,229228,172\n31,755646,373,229644,107\n32,748270,356,228080,101\n33,1039060,83,222995,144\n34,740778,410,222507,102\n35,734302,55,218856,135\n36,1023045,74,205058,153\n37,737813,52,203779,114\n38,727470,152,202441,104\n39,1011616,115,195844,142\n40,726298,93,195946,103\n41,726510,78,195397,99\n42,1005975,70,198328,141\n43,720283,67,199059,100\n44,720846,54,199682,100\n45,1009998,86,197190,143\n46,717984,49,196060,102\n47,713282,65,195463,104\n48,976711,75,195948,135\n49,717754,70,194596,97\n50,892188,61,196337,123\n51,968520,67,194007,138\n52,709373,53,195717,100\n53,710763,57,193990,101\n54,992490,86,193877,141\n55,718660,57,193893,100\n56,710793,66,195071,102\n57,991697,77,198731,137\n58,698007,55,197392,98\n59,705946,57,196483,101\n60,1054155,66,193971,147\n61,698777,63,194023,96\n62,700441,52,193721,102\n63,984396,76,193028,141\n64,709076,48,194403,100\n65,705313,69,194020,101\n66,987516,80,193283,136\n67,693874,55,193376,98\n68,700531,53,193223,98\n69,969967,77,193472,133\n70,702423,65,192176,100\n71,872029,56,194021,118\n72,942747,70,194863,129\n73,694985,53,197197,98\n74,703919,66,195331,99\n75,983844,59,192834,134\n76,693128,54,191597,98\n77,690451,55,193246,98\n78,1016084,74,193380,138\n79,699209,52,192094,99\n80,687841,56,190648,96\n81,1008336,64,192340,137\n82,691045,54,192645,98\n83,686844,68,192608,97\n84,963087,63,192647,151\n85,692243,51,193898,99\n86,861585,57,195952,119\n87,935528,74,198270,129\n88,683343,54,198604,100\n89,684328,72,196603,98\n90,1044580,64,192486,141\n91,685423,55,192137,97\n92,687905,70,191847,98\n93,971590,61,192590,139\n94,679199,55,192918,97\n95,685103,53,193131,96\n96,973063,80,192914,131\n97,682085,56,193313,99\n98,686769,55,193084,97\n99,973256,58,194296,133\n100,686410,52,193727,98\n101,686153,70,194010,101\n102,935060,58,194330,131\n103,683169,73,195536,96\n104,857002,57,198265,121\n105,934411,75,196097,130\n106,683857,53,195314,94\n107,684791,56,192174,100\n108,973551,65,192743,134\n109,682283,60,192732,107\n110,686366,56,193034,102\n111,970810,63,191399,134\n112,685953,50,191490,96\n113,682420,58,191444,98\n114,972296,80,191697,134\n115,687759,53,191421,94\n116,687336,51,192279,101\n117,932858,60,200641,129\n118,681242,59,200698,93\n119,854295,51,200795,119\n120,1044997,56,193808,142\n121,679805,44,194177,93\n122,853526,53,194664,120\n123,933975,70,193671,130\n124,681904,43,193344,95\n125,689832,54,191459,100\n126,975888,61,192451,135\n127,680411,56,191344,95\n128,685120,52,191776,100\n129,974023,80,192397,133\n130,684488,53,193695,96\n131,686920,52,193334,98\n132,971906,79,195816,133\n133,680491,54,197055,100\n134,685972,63,197318,101\n135,971451,59,194092,135\n136,679241,66,193285,99\n137,683281,68,193384,99\n138,937683,71,192561,130\n139,686457,82,192626,100\n140,686364,72,192301,97\n141,972588,65,192994,135\n142,685976,61,193058,100\n143,685599,61,193349,97\n144,974796,64,191993,136\n145,687067,74,192265,100\n146,683666,59,193057,99\n147,972052,67,197185,134\n148,681866,60,196924,113\n149,681583,72,196123,116\n150,1044259,66,197131,157\n151,685188,60,196829,98\n152,681547,61,196392,97\n153,970709,67,192017,132\n154,680842,71,192029,97\n155,686483,59,192649,98\n156,938696,63,191899,128\n157,683885,57,192042,99\n158,687622,90,193012,99\n159,969273,59,192912,133\n160,679683,60,191664,95\n161,683959,60,190448,97\n162,971899,66,193750,130\n163,680597,69,194686,96\n164,684985,65,194363,97\n165,970113,61,194678,131\n166,682468,62,195746,97\n167,687815,74,196202,95\n168,969733,63,192222,132\n169,681817,56,191850,97\n170,686702,54,191281,97\n171,937655,70,191318,129\n172,688436,50,191099,98\n173,684922,54,191528,98\n174,972884,58,194192,132\n175,684116,51,193028,95\n176,678759,72,193767,95\n177,969976,58,196770,131\n178,686547,52,198050,96\n179,684508,56,197118,96\n"
+    },
+    "cu-gpu-sixbench-gop-cam1": {
+      "frames": 180,
+      "stage_us": {
+        "upload_us": {
+          "median": 67.0,
+          "mean": 72.42441860465117
+        },
+        "encode_us": {
+          "median": 193074.0,
+          "mean": 185868.91279069768
+        },
+        "retrieve_us": {
+          "median": 161.0,
+          "mean": 175.81976744186048
+        }
+      },
+      "frames_csv": "frame,encoded_bytes,upload_us,encode_us,retrieve_us\n0,1798030,48165,138854,1130\n1,1322871,460,155973,763\n2,2215012,420,176147,1386\n3,1801815,540,227249,1046\n4,1575769,398,230381,198\n5,1613866,523,223767,328\n6,1647105,89,223984,218\n7,1482211,356,224327,190\n8,1459442,293,222929,183\n9,1604016,77,209598,247\n10,1227667,62,206837,163\n11,1228133,51,204836,166\n12,1553518,157,197187,206\n13,1234126,80,196297,163\n14,1235696,87,196316,157\n15,1553714,73,198574,204\n16,1230752,72,198351,162\n17,1230368,45,198380,157\n18,1546111,88,196946,206\n19,1234848,56,197155,162\n20,1226422,44,197150,156\n21,1541722,83,195714,207\n22,1218288,55,196361,160\n23,1215533,44,196322,155\n24,1544388,71,194544,216\n25,1222332,66,193912,161\n26,1226998,45,194038,161\n27,1509789,94,193403,202\n28,1226608,65,193538,162\n29,1224393,56,193689,165\n30,1794629,96,198142,233\n31,1218932,61,198864,159\n32,1228145,55,198778,160\n33,1542917,81,194274,205\n34,1212989,71,193759,158\n35,1210874,53,193465,156\n36,1536871,83,192712,201\n37,1219791,64,193508,161\n38,1220788,65,193601,157\n39,1540308,78,193874,202\n40,1221156,60,193144,173\n41,1221082,48,193277,157\n42,1541003,79,193084,205\n43,1208614,77,193602,160\n44,1211970,48,193610,157\n45,1499106,86,193506,198\n46,1220626,55,194982,161\n47,1225809,65,195120,159\n48,1537424,63,193810,204\n49,1210213,89,192409,159\n50,1223412,58,192458,160\n51,1536921,97,193183,201\n52,1209081,77,193213,161\n53,1212804,60,193064,158\n54,1539954,79,192853,201\n55,1218135,65,192367,160\n56,1212359,67,192375,158\n57,1528465,80,193061,198\n58,1209507,61,193024,160\n59,1213343,56,193029,157\n60,1786484,82,187636,229\n61,1202853,76,198614,161\n62,1204302,54,198567,156\n63,1525240,75,190558,198\n64,1214889,67,191425,160\n65,1221752,70,191578,159\n66,1537767,68,195246,199\n67,1216006,61,193191,162\n68,1217553,58,193146,160\n69,1533849,78,191435,200\n70,1220337,61,192944,160\n71,1214924,58,192923,158\n72,1504548,72,194171,195\n73,1216741,62,194292,160\n74,1207733,67,194249,175\n75,1545837,72,192689,199\n76,1208670,58,194581,159\n77,1211307,54,194530,158\n78,1498787,80,197693,215\n79,1222815,61,195994,160\n80,1222688,54,196110,176\n81,1534406,65,192517,200\n82,1216001,61,192528,161\n83,1209161,68,192389,157\n84,1532605,69,191395,202\n85,1213260,64,191406,159\n86,1206570,56,191416,165\n87,1492055,80,193132,195\n88,1209628,59,191646,157\n89,1210107,59,191675,157\n90,1788010,67,197600,228\n91,1424724,62,200911,185\n92,1216435,63,200935,157\n93,1499166,70,194697,195\n94,1205560,66,192874,160\n95,1209315,51,192879,156\n96,1533282,84,194452,200\n97,1213311,61,194565,160\n98,1208958,56,194582,158\n99,1526240,75,191510,198\n100,1201547,71,192113,158\n101,1205125,56,192101,157\n102,1538540,67,191970,198\n103,1225358,60,192312,161\n104,1217832,57,192403,158\n105,1506945,84,194476,203\n106,1224522,61,195789,161\n107,1222577,56,195834,156\n108,1554622,71,195997,201\n109,1219422,76,194070,160\n110,1220764,48,194105,159\n111,1502489,69,192849,195\n112,1217141,61,192881,163\n113,1212909,60,192825,158\n114,1535999,81,192600,200\n115,1215861,62,192642,160\n116,1219809,55,192703,161\n117,1539382,68,191813,199\n118,1222122,72,191982,160\n119,1215664,55,191966,159\n120,1786419,67,198589,228\n121,1221035,61,197118,161\n122,1223619,56,197179,160\n123,1536982,85,192855,199\n124,1420280,61,196640,185\n125,1211075,56,196550,157\n126,1497941,68,195012,204\n127,1210741,78,192557,159\n128,1214265,54,192642,157\n129,1530821,67,192153,198\n130,1201442,60,192142,159\n131,1210621,56,192131,157\n132,1531617,79,191814,198\n133,1209560,57,192612,175\n134,1215234,56,192640,158\n135,1532452,68,192498,199\n136,1207069,71,193733,159\n137,1210918,57,193729,157\n138,1505590,72,196389,195\n139,1214270,63,194627,160\n140,1213029,69,194653,170\n141,1556453,72,192294,202\n142,1208641,62,192219,158\n143,1209837,52,192200,159\n144,1497469,71,191488,193\n145,1211358,74,191539,177\n146,1209018,57,191553,159\n147,1535048,69,193687,200\n148,1216262,59,193852,160\n149,1212385,72,193880,159\n150,1787773,70,196206,228\n151,1212490,63,196751,158\n152,1214135,54,196771,158\n153,1533566,72,192815,216\n154,1210089,77,192267,161\n155,1205025,72,192180,158\n156,1496035,133,167081,198\n157,1418423,88,169565,186\n158,1214808,82,169655,159\n159,1420080,343,164988,186\n160,1212639,70,162988,309\n161,1213374,61,163009,167\n162,1497454,76,163287,196\n163,1211754,98,163753,161\n164,1213779,89,163916,155\n165,1496316,77,166775,213\n166,1204286,82,153302,169\n167,1211650,68,153314,178\n168,1495916,129,102787,197\n169,1208694,139,105412,159\n170,1220689,130,105500,159\n171,1428298,116,102808,183\n172,1220793,73,103156,162\n173,1217128,63,103130,157\n174,1213166,77,101026,157\n175,1222564,81,100991,158\n176,1214685,78,100782,158\n177,1210119,79,99385,176\n178,1211856,58,99271,161\n179,1215196,55,99270,160\n"
+    }
+  },
+  "six_camera_recording_20s": {
+    "record_command": "nvmedia-record record --output /data/cu-gpu-record-final-queue.copper --seconds 20",
+    "recorded_seconds": 20.008,
+    "requested_fps": 15,
+    "extract": "copperlists=2369 frames=[291, 291, 290, 291, 292, 287] bytes=[252934166, 432976631, 408646134, 391463405, 302176800, 287423373]\n",
+    "decode": [
+      {
+        "camera": 0,
+        "expected_frames": 291,
+        "decoded_frames": 291,
+        "decoded_bytes": 1810252800,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 252934166,
+        "sha256": "91a22eec53eaecb19907c4d4433e495016c9ab8ced87d4a1bd05092de4b49562"
+      },
+      {
+        "camera": 1,
+        "expected_frames": 291,
+        "decoded_frames": 291,
+        "decoded_bytes": 1810252800,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 432976631,
+        "sha256": "b466f2c8f7a5d68a10e57de7e077a3801c81a9250b6a1058d7a7e5654a1e5d86"
+      },
+      {
+        "camera": 2,
+        "expected_frames": 290,
+        "decoded_frames": 290,
+        "decoded_bytes": 1804032000,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 408646134,
+        "sha256": "a98d16dd361cfe03a42ac65639f3f690340af85de0f4ba992f0ce6f850637d40"
+      },
+      {
+        "camera": 3,
+        "expected_frames": 291,
+        "decoded_frames": 291,
+        "decoded_bytes": 1810252800,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 391463405,
+        "sha256": "d0894a7e8ee1f37b0438775f160b3ba17006aa84b4f52392f0d255c24ddc0024"
+      },
+      {
+        "camera": 4,
+        "expected_frames": 292,
+        "decoded_frames": 292,
+        "decoded_bytes": 1816473600,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 302176800,
+        "sha256": "c5e608cfec462564719104bb192e9e4aebae22b06327b0f70e435eb00dc70737"
+      },
+      {
+        "camera": 5,
+        "expected_frames": 287,
+        "decoded_frames": 287,
+        "decoded_bytes": 1785369600,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "stream_bytes": 287423373,
+        "sha256": "3b70583af792fb313f25388d56a16cc852ced0d2a22c6d64514d4d20099aa2bb"
+      }
+    ]
+  },
+  "single_camera_benchmark": {
+    "command": "nvmedia-check --camera /dev/cams/des0/port0/sensor0 --frames 300 --fps 30 --benchmark",
+    "frames": 300,
+    "elapsed_seconds": 9.915,
+    "fps": 30.158,
+    "raw_cpu_maps": 0
+  },
+  "six_camera_recording_with_cuda_events": {
+    "recorded_seconds": 15.003,
+    "requested_fps": 15,
+    "frames": [
+      223,
+      222,
+      222,
+      222,
+      223,
+      219
+    ],
+    "phase": "Final CUDA-event reclamation code",
+    "decode": [
+      {
+        "camera": 0,
+        "expected_frames": 223,
+        "decoded_frames": 223,
+        "decoded_bytes": 1387238400,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "4e716972234cde76fc0a4773cdd1c1daa66116a4fdce02f2b1fc46638235b748"
+      },
+      {
+        "camera": 1,
+        "expected_frames": 222,
+        "decoded_frames": 222,
+        "decoded_bytes": 1381017600,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "96eaceeb07fade2ca6ef49cb3bd89ffcce2e561d18adf4ecb49221c5a9d4e2a9"
+      },
+      {
+        "camera": 2,
+        "expected_frames": 222,
+        "decoded_frames": 222,
+        "decoded_bytes": 1381017600,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "6d6c888a107ed2bad70b097f14e96c43a63c42a84e9879ca9a27a6f5ee626d4b"
+      },
+      {
+        "camera": 3,
+        "expected_frames": 222,
+        "decoded_frames": 222,
+        "decoded_bytes": 1381017600,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "d4ac1626446dd0da0e4b3dc1c9c04ff21b3bf88a277061cf7d1541ca94d1fb76"
+      },
+      {
+        "camera": 4,
+        "expected_frames": 223,
+        "decoded_frames": 223,
+        "decoded_bytes": 1387238400,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "84761e68a2695f3a07fbba91d3465b5cd06c98d6e9c0e810465277dfe1d3e1da"
+      },
+      {
+        "camera": 5,
+        "expected_frames": 219,
+        "decoded_frames": 219,
+        "decoded_bytes": 1362355200,
+        "first_vcl_nal": 19,
+        "returncode": 0,
+        "stderr": "",
+        "sha256": "c0e6f9de0a4d6e48bf3c57d1277a79128183955aac48b657f76233b0891be3c3"
+      }
+    ]
+  },
+  "final_camera_validation": {
+    "frames": 30,
+    "original_uyvy_exact": true,
+    "phase": "Final CUDA event reclamation code",
+    "files": {
+      "reference.y444": {
+        "bytes": 186624000,
+        "sha256": "dfb012c63e51e052bb7e37170250716c089edb9756c2ebe2603e4c440f819a0f"
+      },
+      "upload.y444": {
+        "bytes": 186624000,
+        "sha256": "dfb012c63e51e052bb7e37170250716c089edb9756c2ebe2603e4c440f819a0f"
+      },
+      "decoded.y444": {
+        "bytes": 186624000,
+        "sha256": "dfb012c63e51e052bb7e37170250716c089edb9756c2ebe2603e4c440f819a0f"
+      },
+      "reference.uyvy": {
+        "bytes": 124416000,
+        "sha256": "20f88d3e1e2c6fbc7495adfa69bad1c2ed6cc881f4441c36bcd2182c1d838482"
+      },
+      "stream.h265": {
+        "bytes": 30177101,
+        "sha256": "3017abf987f45914d1281e022dac62d060d51898d1dca3fdd3efa7f98c2ee9fd"
+      }
+    }
+  },
+  "final_six_camera_encode_benchmark": {
+    "results": [
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port0/sensor0 frames=180 elapsed_seconds=11.210 fps=15.968 bytes=154447040 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor0 frames=180 elapsed_seconds=11.449 fps=15.635 bytes=241210800 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor1 frames=180 elapsed_seconds=11.432 fps=15.657 bytes=234963976 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des0/port1/sensor2 frames=180 elapsed_seconds=11.408 fps=15.690 bytes=224168599 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des1/port0/sensor0 frames=180 elapsed_seconds=11.477 fps=15.596 bytes=187282705 raw_cpu_maps=0\n",
+        "stderr": ""
+      },
+      {
+        "returncode": 0,
+        "stdout": "camera=/dev/cams/des1/port0/sensor1 frames=180 elapsed_seconds=11.464 fps=15.614 bytes=180143483 raw_cpu_maps=0\n",
+        "stderr": ""
+      }
+    ],
+    "nvenc": [
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "115200000",
+        "state": "0"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      },
+      {
+        "rate": "793600000",
+        "state": "1"
+      }
+    ],
+    "phase": "Final code with CUDA-event capture reclamation, no other camera/encoder/decoder workloads"
+  },
+  "final_hashes": {
+    "src/main.rs": "90c77a071e68a0493c54919663499c226443396b81c05cd417a2378ea6ca5435",
+    "src/bin/nvmedia-check.rs": "78a6494e5329ca36e46d2694ed991379dca837677a8ad96cd24590c3bbf9d229",
+    "src/bin/nvmedia-record.rs": "a7c6f1f05a0e59d3f8056f90f93dc2f15c8634f9e3794aea98ffcdc4ba2fdb35",
+    "src/nvmedia/mod.rs": "c88e85a76216dc5b1ce304dea2dd1b7789b99bb33931dc14c0cc5d292161edff",
+    "src/nvmedia/encoder.rs": "b85825283a0596d5249adef5b165ec5a62887aac0833b86eba9090257df168ce",
+    "src/nvmedia/ffi.rs": "a47cbf1c45d384a551c8cc1eea6971cbd7c6d4b0a187e31534e391837c7d1346",
+    "src/nvmedia/gpu.rs": "e3018030717ff0eb6398732fba42bdd056307f4a49f519d011e91dd502f884ba",
+    "src/nvmedia/unpack.cu": "7a6330092c28559058e386632f2f24eba24554a1fea7e946044e6ffb00f015c0",
+    "release/nvmedia-record": "c8b488b0c11a3b2b6b9e21622e7da6f5ba12e6b486e7c62f7fd84024b5de77de",
+    "release/nvmedia-check": "12fb335c1390696d77c113b82aee2784fb2841a24f1c45e5acb9807bbae2a993"
+  },
+  "checks": {
+    "delta_release_all_targets": {
+      "command": "cargo +stable test --release --locked --features nvmedia --all-targets",
+      "returncode": 0,
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/root/cu-multistream-telemetry-demo)\n    Finished `release` profile [optimized] target(s) in 11.36s\n   Compiling cu-multistream-telemetry-demo v0.1.0 (/root/cu-multistream-telemetry-demo)\n    Finished `release` profile [optimized] target(s) in 2.09s\n     Running unittests src/lib.rs (target/release/deps/cu_multistream_telemetry_demo-be689b8af79952ad)\n\nrunning 1 test\ntest nvmedia::tests::test_uyvy_preserves_extremes_chroma_and_padded_rows ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/main.rs (target/release/deps/cu_multistream_telemetry_demo-e48e7ff28d573322)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/bin/nvmedia-check.rs (target/release/deps/nvmedia_check-f748388466aaa283)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running unittests src/bin/nvmedia-record.rs (target/release/deps/nvmedia_record-ddf9c67371e35398)\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n     Running tests/capture_buffers.rs (target/release/deps/capture_buffers-f3d9d8c94444d70f)\n\nrunning 1 test\ntest captured_bytes_survive_source_shutdown_in_both_modes ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s\n\nrecorded_frames=30 upload_exact=true elapsed_seconds=6.765 output=/data/cu-gpu-events-exact\n"
+    },
+    "workstation_clippy": {
+      "command": "cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+      "returncode": 0,
+      "log": "   Compiling cu-multistream-telemetry-demo v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo)\n    Checking telemetry-station v0.1.0 (/home/gbin/projects/copper/yaak/cu-multistream-telemetry-demo/telemetry-station)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.38s\n"
+    }
+  },
+  "network": {
+    "interface": "eth0",
+    "ipv4": "192.168.1.236",
+    "negotiated_mbps": 1000,
+    "previous_2_5gbe_usb_interface_present": false,
+    "plain_udp_probe": {
+      "destination": "192.168.1.3:17447",
+      "payload_bytes": 1200,
+      "target_mbps": 400,
+      "batch_packets": 64,
+      "sent": 192000,
+      "elapsed_seconds": 4.608072435999929,
+      "received": 128599,
+      "last_received_sequence": 191999,
+      "receiver_socket_buffer": 134217728,
+      "loss_fraction": 0.33021354166666667,
+      "sender": "Python socket.sendto, sleep to cumulative target after each 64 packets",
+      "receiver": "Python socket.recv in a dedicated process; 64 MiB requested SO_RCVBUF; drain 2 seconds after last packet",
+      "receiver_udp_rcvbuf_errors_before": 8178,
+      "receiver_udp_rcvbuf_errors_after": 8178
+    },
+    "streaming_validated_at_15_fps": false,
+    "gf256_stream_15fps": {
+      "sender_log": "294.4 Mbit/s tx_drops=0 expired=12970 inbox_drops=14 feedback=Active reports=85 loss=50.63% repair_every=5\n171.4 Mbit/s tx_drops=0 expired=89707 inbox_drops=14 feedback=Active reports=94 loss=81.91% repair_every=4\n175.7 Mbit/s tx_drops=0 expired=190223 inbox_drops=14 feedback=Active reports=104 loss=87.53% repair_every=4\n163.0 Mbit/s tx_drops=0 expired=295601 inbox_drops=14 feedback=Active reports=115 loss=82.51% repair_every=4\n155.6 Mbit/s tx_drops=0 expired=398037 inbox_drops=14 feedback=Active reports=125 loss=88.42% repair_every=4\n155.8 Mbit/s tx_drops=0 expired=499670 inbox_drops=15 feedback=Active reports=135 loss=81.27% repair_every=4\n142.1 Mbit/s tx_drops=0 expired=598146 inbox_drops=16 feedback=Active reports=144 loss=82.46% repair_every=4\n245.1 Mbit/s tx_drops=0 expired=695261 inbox_drops=17 feedback=Active reports=155 loss=72.22% repair_every=4\n279.0 Mbit/s tx_drops=0 expired=788106 inbox_drops=17 feedback=Active reports=165 loss=67.47% repair_every=4\n272.0 Mbit/s tx_drops=0 expired=872247 inbox_drops=17 feedback=Active reports=175 loss=79.74% repair_every=4\n304.8 Mbit/s tx_drops=0 expired=958116 inbox_drops=17 feedback=Active reports=185 loss=77.36% repair_every=4\n272.4 Mbit/s tx_drops=0 expired=1047398 inbox_drops=17 feedback=Active reports=195 loss=83.85% repair_every=4\n276.1 Mbit/s tx_drops=0 expired=1128663 inbox_drops=17 feedback=Active reports=204 loss=77.25% repair_every=4\n295.3 Mbit/s tx_drops=0 expired=1225552 inbox_drops=17 feedback=Active reports=215 loss=83.81% repair_every=4\n",
+      "receiver_final": "final CuTwinStatus { latest: Some(1748), recovery_point: Some(1740), gaps: 974, packets: 372105, archived: 267, structured_logs: 0, identity: Some(StreamIdentity { session_id: [99, 183, 150, 245, 55, 237, 47, 253, 220, 113, 29, 139, 191, 218, 12, 254], sender_id: 0 }), last_packet: Some(Instant { tv_sec: 23811, tv_nsec: 932441091 }), state: Closed, twin: TwinStatus { state: Recovering, reconstructed: 6, verified: 0, divergences: 0, queue_overflows: 0 }, feedback_reports_sent: 383, feedback_reports_dropped: 0, feedback_failed: false }"
+    },
+    "discarded_gf2_experiments": {
+      "full_density": "sender disconnected; GF2 FULL requires repair key zero in installed cu-fec, whereas continuous sender advances repair keys",
+      "threshold_7": "completed sender trial but high loss and no camera delivery; reverted",
+      "threshold_7_8fps": "no sender expiry, still about 60% reported loss; reverted"
+    },
+    "transport_settings_changed": false
+  },
+  "raw_artifacts": {
+    "final_camera": "/data/cu-gpu-events-exact",
+    "final_record_base": "/data/cu-gpu-events-record.copper",
+    "final_record_streams": "/data/cu-gpu-events-record-streams",
+    "prior_tmp_artifacts_moved_to": "/data/nvmedia-gpu-validation-artifacts"
+  },
+  "final_single_camera_benchmark": {
+    "frames": 120,
+    "elapsed_seconds": 3.896,
+    "fps": 30.547,
+    "encoded_bytes": 94048746,
+    "raw_cpu_maps": 0,
+    "directory": "/data/cu-gpu-final-single-bench"
+  }
+}

@@ -24,7 +24,7 @@ enum Command {
         output: PathBuf,
         #[arg(long, default_value_t = 30)]
         seconds: u64,
-        #[arg(long, default_value_t = 2, value_parser = clap::value_parser!(u32).range(1..=30))]
+        #[arg(long, default_value_t = 15, value_parser = clap::value_parser!(u32).range(1..=30))]
         fps: u32,
     },
     /// Extract complete access units from the recorded CopperLists for decoding.
@@ -101,11 +101,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
                 Ok(())
             })();
+            let recorded_seconds = start.elapsed().as_secs_f64();
+            let shutdown = Instant::now();
             drop(running.stop()?);
             result?;
             println!(
-                "recorded_seconds={:.1} output={}",
-                start.elapsed().as_secs_f64(),
+                "recorded_seconds={recorded_seconds:.3} shutdown_seconds={:.3} output={}",
+                shutdown.elapsed().as_secs_f64(),
                 output.display()
             );
         }

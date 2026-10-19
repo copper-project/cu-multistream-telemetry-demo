@@ -219,9 +219,7 @@ api! {
     nv_sci_buf_obj_alloc: NvSciBufObjAlloc, 1, (Handle, *mut Handle) -> u32;
     nv_sci_buf_obj_free: NvSciBufObjFree, 1, (Handle) -> ();
     nv_sci_buf_obj_get_attr_list: NvSciBufObjGetAttrList, 1, (Handle, *mut Handle) -> u32;
-    nv_sci_buf_obj_put_pixels: NvSciBufObjPutPixels, 1, (Handle, *const c_void, *mut *const c_void, *const u32, *const u32) -> u32;
     nv_sci_buf_obj_get_pixels: NvSciBufObjGetPixels, 1, (Handle, *const c_void, *mut *mut c_void, *const u32, *const u32) -> u32;
-    nv_sci_buf_obj_flush_cpu_cache_range: NvSciBufObjFlushCpuCacheRange, 1, (Handle, u64, u64) -> u32;
     nv_sci_sync_check_version_compatibility: NvSciSyncCheckVersionCompatibility, 2, (u32, u32, *mut bool) -> u32;
     nv_sci_sync_module_open: NvSciSyncModuleOpen, 2, (*mut Handle) -> u32;
     nv_sci_sync_module_close: NvSciSyncModuleClose, 2, (Handle) -> ();
@@ -233,8 +231,6 @@ api! {
     nv_sci_sync_attr_list_reconcile: NvSciSyncAttrListReconcile, 2, (*const Handle, usize, *mut Handle, *mut Handle) -> u32;
     nv_sci_sync_obj_alloc: NvSciSyncObjAlloc, 2, (Handle, *mut Handle) -> u32;
     nv_sci_sync_obj_free: NvSciSyncObjFree, 2, (Handle) -> ();
-    nv_sci_sync_obj_generate_fence: NvSciSyncObjGenerateFence, 2, (Handle, *mut Fence) -> u32;
-    nv_sci_sync_obj_signal: NvSciSyncObjSignal, 2, (Handle) -> u32;
     nv_sci_sync_fence_wait: NvSciSyncFenceWait, 2, (*const Fence, Handle, i64) -> u32;
     nv_sci_sync_fence_clear: NvSciSyncFenceClear, 2, (*mut Fence) -> ();
 }

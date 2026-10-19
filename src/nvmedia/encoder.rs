@@ -1,6 +1,8 @@
-//! Synchronous, thread-confined IEP encoder and owned NvSci resources.
+//! Queued, thread-confined IEP encoder and owned shared GPU resources.
 use super::ffi::*;
+use super::gpu::{Gpu, Image};
 use cu29::prelude::*;
+use std::collections::VecDeque;
 use std::ptr::{null, null_mut};
 use std::sync::Arc;
 use std::time::{Duration, Instant};
@@ -46,16 +48,20 @@ struct Surface {
     object: Handle,
     attrs: Handle,
     bytes: u64,
-    flush: bool,
 }
 impl Surface {
-    fn new(api: Arc<Api>, module: Handle, width: u32, height: u32) -> CuResult<Self> {
+    fn new(
+        api: Arc<Api>,
+        module: Handle,
+        width: u32,
+        height: u32,
+        gpu: &[u8; 16],
+    ) -> CuResult<Self> {
         let mut surface = Self {
             api: api.clone(),
             object: null_mut(),
             attrs: null_mut(),
             bytes: 0,
-            flush: false,
         };
         let mut lists = AttrLists {
             api: &api,
@@ -90,6 +96,7 @@ impl Surface {
                 Attr::new(2, &cpu),
                 Attr::new(3, &permission),
                 Attr::new(4, &cache),
+                Attr::new(5, gpu),
                 Attr::new(0x20000, &block_linear),
                 Attr::new(0x2000e, &progressive),
                 Attr::new(0x20017, &count),
@@ -124,7 +131,6 @@ impl Surface {
             )?;
             let mut query = [
                 Attr::query(0x20006),
-                Attr::query(6),
                 Attr::query(0x20008),
                 Attr::query(0x20009),
                 Attr::query(0x2000c),
@@ -135,11 +141,10 @@ impl Surface {
                 nv_sci_buf_attr_list_get_attrs(surface.attrs, query.as_mut_ptr(), query.len())
             )?;
             surface.bytes = query[0].read()?;
-            surface.flush = query[1].read()?;
-            if query[2].read::<u32>()? != 2
-                || query[3].read::<[u32; 2]>()? != [0x54, 0x4c]
-                || query[4].read::<[u32; 2]>()? != [width; 2]
-                || query[5].read::<[u32; 2]>()? != [height; 2]
+            if query[1].read::<u32>()? != 2
+                || query[2].read::<[u32; 2]>()? != [0x54, 0x4c]
+                || query[3].read::<[u32; 2]>()? != [width; 2]
+                || query[4].read::<[u32; 2]>()? != [height; 2]
             {
                 return Err("Expected block-linear 8-bit YUV444 NvSciBuf surface".into());
             }
@@ -161,35 +166,46 @@ impl Drop for Surface {
 /// Last-frame wall time spent uploading, waiting for hardware, and retrieving output.
 #[derive(Clone, Copy, Debug, Default)]
 pub struct EncodeTimings {
-    /// CPU-to-NvSciBuf conversion and cache maintenance.
+    /// Host time importing/launching CUDA conversion and signaling its pre-fence.
     pub upload: Duration,
-    /// Submission through EOF completion.
+    /// Time from submission until collection (includes queue residence).
     pub encode: Duration,
-    /// Output query, retrieval, and copy into the caller's buffer.
+    /// Output query, allocation, and direct retrieval.
     pub retrieve: Duration,
 }
 
-/// Lossless 1080p YUV444 encoder using the tested 4K reservation and early DRC.
-/// Construct and use it on one worker thread; no NVIDIA headers are required.
+struct Slot {
+    surface: Surface,
+    image: Option<Image>,
+    pre_fence: Fence,
+    eof_fence: Fence,
+    registered: bool,
+    sample: Option<gstreamer::Sample>,
+    started: Instant,
+    uploaded: Instant,
+}
+
+/// Lossless 1080p YUV444 encoder with three shared GPU surfaces in flight.
+/// Construct and use on one worker thread; no NVIDIA headers are required.
 pub struct Encoder {
     api: Arc<Api>,
+    gpu: Option<Gpu>,
+    slots: Vec<Slot>,
+    queue: VecDeque<usize>,
+    next_slot: usize,
+    last_slot: Option<usize>,
     module: Handle,
     sync_module: Handle,
     iep: Handle,
-    surface: Option<Surface>,
     reserve: Option<Surface>,
     pre: Handle,
     eof: Handle,
     waiter: Handle,
-    pre_fence: Fence,
-    eof_fence: Fence,
-    image_registered: bool,
     pre_registered: bool,
     eof_registered: bool,
     pending: bool,
     poisoned: bool,
     fps: u32,
-    output: Vec<u8>,
     timings: EncodeTimings,
 }
 impl Encoder {
@@ -199,25 +215,27 @@ impl Encoder {
             return Err("Frame rate must be 1..=30".into());
         }
         let api = Arc::new(Api::load()?);
+        let gpu = Gpu::new()?;
+        let uuid = gpu.uuid;
         let mut encoder = Self {
             api: api.clone(),
+            gpu: Some(gpu),
+            slots: Vec::with_capacity(3),
+            queue: VecDeque::with_capacity(3),
+            next_slot: 0,
+            last_slot: None,
             module: null_mut(),
             sync_module: null_mut(),
             iep: null_mut(),
-            surface: None,
             reserve: None,
             pre: null_mut(),
             eof: null_mut(),
             waiter: null_mut(),
-            pre_fence: Fence::default(),
-            eof_fence: Fence::default(),
-            image_registered: false,
             pre_registered: false,
             eof_registered: false,
             pending: false,
             poisoned: false,
             fps,
-            output: vec![0; 32 * 1024 * 1024],
             timings: EncodeTimings::default(),
         };
         // SAFETY: FFI structs match the checked LP64 ABI; all handles are encoder-owned.
@@ -241,8 +259,19 @@ impl Encoder {
                 return Err("Incompatible NvSciBuf 2.11 / NvSciSync 2.8".into());
             }
             call!(api, nv_sci_buf_module_open(&mut encoder.module))?;
-            encoder.surface = Some(Surface::new(api.clone(), encoder.module, 1920, 1080)?);
-            let reserve = Surface::new(api.clone(), encoder.module, 3840, 2160)?;
+            for _ in 0..3 {
+                encoder.slots.push(Slot {
+                    surface: Surface::new(api.clone(), encoder.module, 1920, 1080, &uuid)?,
+                    image: None,
+                    pre_fence: Fence::default(),
+                    eof_fence: Fence::default(),
+                    registered: false,
+                    sample: None,
+                    started: Instant::now(),
+                    uploaded: Instant::now(),
+                });
+            }
+            let reserve = Surface::new(api.clone(), encoder.module, 3840, 2160, &uuid)?;
             let init = InitH265 {
                 width: 3840,
                 height: 2160,
@@ -276,10 +305,10 @@ impl Encoder {
             )?;
             let config = ConfigH265 {
                 features: 1 | (1 << 4),
-                gop: 1,
+                gop: fps,
                 rc: Self::rate_control(),
                 repeat_headers: 2,
-                idr_period: 1,
+                idr_period: fps,
                 preset: 0x20,
                 ..Default::default()
             };
@@ -287,13 +316,13 @@ impl Encoder {
                 api,
                 nv_mediaiep_set_configuration(encoder.iep, std::ptr::from_ref(&config).cast())
             )?;
-            let image = encoder
-                .surface
-                .as_ref()
-                .ok_or(CuError::from("Missing input surface"))?
-                .object;
-            call!(api, nv_mediaiep_register_nv_sci_buf_obj(encoder.iep, image))?;
-            encoder.image_registered = true;
+            for slot in &mut encoder.slots {
+                call!(
+                    api,
+                    nv_mediaiep_register_nv_sci_buf_obj(encoder.iep, slot.surface.object)
+                )?;
+                slot.registered = true;
+            }
             call!(api, nv_sci_sync_module_open(&mut encoder.sync_module))?;
             call!(
                 api,
@@ -315,6 +344,33 @@ impl Encoder {
                 api,
                 nv_mediaiep_set_nv_sci_sync_objforeof(encoder.iep, encoder.eof)
             )?;
+        }
+        let gpu = encoder
+            .gpu
+            .as_mut()
+            .ok_or(CuError::from("Missing CUDA context"))?;
+        gpu.semaphore(encoder.pre)?;
+        for slot in &mut encoder.slots {
+            let surface = &slot.surface;
+            let mut attrs = [
+                Attr::query(0x20010),
+                Attr::query(0x20014),
+                Attr::query(0x2000d),
+            ];
+            // SAFETY: live reconciled attribute list, checked typed array lengths.
+            unsafe {
+                call!(
+                    api,
+                    nv_sci_buf_attr_list_get_attrs(surface.attrs, attrs.as_mut_ptr(), attrs.len())
+                )?;
+                slot.image = Some(gpu.image(
+                    surface.object,
+                    surface.bytes,
+                    attrs[0].read()?,
+                    attrs[1].read()?,
+                    attrs[2].read()?,
+                )?);
+            }
         }
         Ok(encoder)
     }
@@ -355,13 +411,20 @@ impl Encoder {
                     if eof { 0 } else { 1 }
                 )
             )?;
-            let cpu = true;
-            let permission = if eof { 1u64 } else { 2u64 };
-            let attrs = [Attr::new(1, &cpu), Attr::new(2, &permission)];
-            call!(
-                api,
-                nv_sci_sync_attr_list_set_attrs(lists.lists[1], attrs.as_ptr(), attrs.len())
-            )?;
+            if eof {
+                let cpu = true;
+                let permission = 1u64;
+                let attrs = [Attr::new(1, &cpu), Attr::new(2, &permission)];
+                call!(
+                    api,
+                    nv_sci_sync_attr_list_set_attrs(lists.lists[1], attrs.as_ptr(), attrs.len())
+                )?;
+            } else {
+                self.gpu
+                    .as_ref()
+                    .ok_or(CuError::from("Missing CUDA context"))?
+                    .sync_attrs(lists.lists[1])?;
+            }
             let mut reconciled = null_mut();
             let mut conflict = null_mut();
             let status = (api.nv_sci_sync_attr_list_reconcile)(
@@ -378,189 +441,293 @@ impl Encoder {
             Ok(object)
         }
     }
-    fn transfer(&self, data: &mut [u8], upload: bool) -> CuResult<()> {
-        if data.len() != 1920 * 1080 * 3 {
-            return Err("Expected one tightly packed 1920×1080 YUV444 frame".into());
+    /// Copy the last completed input surface back for byte-exact validation only.
+    /// Call before submitting another frame, which can reuse that surface.
+    pub fn read_input(&self, output: &mut [u8]) -> CuResult<()> {
+        if self.poisoned || output.len() != 1920 * 1080 * 3 {
+            return Err("Input readback requires a healthy encoder and one Y444 frame".into());
         }
-        let surface = self
-            .surface
-            .as_ref()
-            .ok_or(CuError::from("Missing input surface"))?;
+        let index = self.last_slot.ok_or(CuError::from("No completed frame"))?;
+        if self.queue.contains(&index) {
+            return Err("Last completed surface has been reused".into());
+        }
         let plane = 1920 * 1080;
         let sizes = [plane as u32; 3];
         let pitches = [1920; 3];
-        // SAFETY: three disjoint, fully sized planes remain borrowed for the FFI call.
+        // SAFETY: surface EOF completed, three disjoint caller-owned output planes.
         unsafe {
-            if upload {
-                let mut sources = [
-                    data.as_ptr().cast(),
-                    data.as_ptr().add(plane).cast(),
-                    data.as_ptr().add(2 * plane).cast(),
-                ];
-                call!(
-                    self.api,
-                    nv_sci_buf_obj_put_pixels(
-                        surface.object,
-                        null(),
-                        sources.as_mut_ptr(),
-                        sizes.as_ptr(),
-                        pitches.as_ptr()
-                    )
-                )?;
-                if surface.flush {
-                    call!(
-                        self.api,
-                        nv_sci_buf_obj_flush_cpu_cache_range(surface.object, 0, surface.bytes)
-                    )?;
-                }
-            } else {
-                let mut targets = [
-                    data.as_mut_ptr().cast(),
-                    data.as_mut_ptr().add(plane).cast(),
-                    data.as_mut_ptr().add(2 * plane).cast(),
-                ];
-                call!(
-                    self.api,
-                    nv_sci_buf_obj_get_pixels(
-                        surface.object,
-                        null(),
-                        targets.as_mut_ptr(),
-                        sizes.as_ptr(),
-                        pitches.as_ptr()
-                    )
-                )?;
-            }
+            let mut targets = [
+                output.as_mut_ptr().cast(),
+                output.as_mut_ptr().add(plane).cast(),
+                output.as_mut_ptr().add(2 * plane).cast(),
+            ];
+            call!(
+                self.api,
+                nv_sci_buf_obj_get_pixels(
+                    self.slots[index].surface.object,
+                    null(),
+                    targets.as_mut_ptr(),
+                    sizes.as_ptr(),
+                    pitches.as_ptr()
+                )
+            )?;
         }
         Ok(())
     }
-    /// Copy the last input surface back for byte-exact validation, after encoding finishes.
-    pub fn read_input(&self, output: &mut [u8]) -> CuResult<()> {
-        if self.pending || self.poisoned {
-            return Err("Encoder failed; surface readback is unavailable".into());
-        }
-        self.transfer(output, false)
+    /// Number of submitted frames whose compressed output has not been collected.
+    pub fn queued(&self) -> usize {
+        self.queue.len()
     }
-    /// Encode one planar frame into `output`. Every frame is an IDR with parameter sets.
-    /// The caller owns the resulting bytes; IEP never retains this output buffer.
-    pub fn encode(&mut self, frame: &mut [u8], output: &mut Vec<u8>) -> CuResult<()> {
+    /// Maximum number of outstanding frames; input memory is bounded.
+    pub fn capacity(&self) -> usize {
+        self.slots.len()
+    }
+
+    fn begin(&mut self) -> CuResult<()> {
+        if self.poisoned {
+            return Err("Encoder cannot be reused after an error".into());
+        }
+        if self.queue.len() == self.slots.len() {
+            return Err("Collect an encoded frame before submitting another".into());
+        }
+        self.poisoned = true;
+        self.pending = true;
+        self.slots[self.next_slot].started = Instant::now();
+        Ok(())
+    }
+    /// Release capture buffers once CUDA finishes reading, independently of NVENC.
+    pub fn reclaim_inputs(&mut self) -> CuResult<()> {
         if self.poisoned {
             return Err("Encoder cannot be reused after an error".into());
         }
         self.poisoned = true;
-        let started = Instant::now();
-        self.transfer(frame, true)?;
-        let uploaded = Instant::now();
-        // SAFETY: no second submission is possible until EOF has completed; fences and
-        // surface remain owned by self even if a wait or driver call fails.
+        let gpu = self
+            .gpu
+            .as_ref()
+            .ok_or(CuError::from("Missing CUDA context"))?;
+        for slot in &mut self.slots {
+            if slot.sample.is_some()
+                && gpu.converted(
+                    slot.image
+                        .as_ref()
+                        .ok_or(CuError::from("Missing CUDA image"))?,
+                )?
+            {
+                slot.sample.take();
+            }
+        }
+        self.poisoned = false;
+        Ok(())
+    }
+    /// Submit native UYVY DMA memory, retaining the sample until CUDA finishes reading.
+    pub fn submit_sample(&mut self, sample: &gstreamer::Sample) -> CuResult<()> {
+        self.begin()?;
+        let slot = &mut self.slots[self.next_slot];
+        slot.sample = Some(sample.clone());
+        self.gpu
+            .as_mut()
+            .ok_or(CuError::from("Missing CUDA context"))?
+            .sample(
+                slot.image
+                    .as_ref()
+                    .ok_or(CuError::from("Missing CUDA image"))?,
+                sample,
+                &mut slot.pre_fence,
+            )?;
+        self.submit()
+    }
+    /// Encode one planar validation frame through the same GPU surfaces and fences.
+    pub fn encode(&mut self, frame: &mut [u8], output: &mut Arc<[u8]>) -> CuResult<()> {
+        if !self.queue.is_empty() {
+            return Err("Drain queued camera frames before planar validation".into());
+        }
+        self.begin()?;
+        let slot = &mut self.slots[self.next_slot];
+        self.gpu
+            .as_mut()
+            .ok_or(CuError::from("Missing CUDA context"))?
+            .planar(
+                slot.image
+                    .as_ref()
+                    .ok_or(CuError::from("Missing CUDA image"))?,
+                frame,
+                &mut slot.pre_fence,
+            )?;
+        self.submit()?;
+        self.receive(output)
+    }
+    /// Synchronous camera helper for byte-exact validation. Capture workers use the queue.
+    pub fn encode_sample(
+        &mut self,
+        sample: &gstreamer::Sample,
+        output: &mut Arc<[u8]>,
+    ) -> CuResult<()> {
+        if !self.queue.is_empty() {
+            return Err("Drain queued camera frames before synchronous validation".into());
+        }
+        self.submit_sample(sample)?;
+        self.receive(output)
+    }
+    fn submit(&mut self) -> CuResult<()> {
+        let slot = &mut self.slots[self.next_slot];
+        slot.uploaded = Instant::now();
+        let picture = PictureH265 {
+            kind: 0,
+            flags: 1,
+            rc: Self::rate_control(),
+            fps_num: self.fps,
+            fps_den: 1,
+            ..Default::default()
+        };
+        // SAFETY: each queued frame owns a distinct registered surface and persistent
+        // fences. CUDA completes conversion/cache maintenance before IEP consumes it.
         unsafe {
             call!(
                 self.api,
-                nv_sci_sync_obj_generate_fence(self.pre, &mut self.pre_fence)
+                nv_mediaiep_insert_pre_nv_sci_sync_fence(self.iep, &slot.pre_fence)
             )?;
-            call!(
-                self.api,
-                nv_mediaiep_insert_pre_nv_sci_sync_fence(self.iep, &self.pre_fence)
-            )?;
-            call!(self.api, nv_sci_sync_obj_signal(self.pre))?;
-            let picture = PictureH265 {
-                kind: 4,
-                flags: 1,
-                rc: Self::rate_control(),
-                fps_num: self.fps,
-                fps_den: 1,
-                ..Default::default()
-            };
-            // Treat even an unsuccessful submission as potentially asynchronous.
-            self.pending = true;
             call!(
                 self.api,
                 nv_mediaiep_feed_frame(
                     self.iep,
-                    self.surface
-                        .as_ref()
-                        .ok_or(CuError::from("Missing input surface"))?
-                        .object,
+                    slot.surface.object,
                     std::ptr::from_ref(&picture).cast(),
                     0
                 )
             )?;
             call!(
                 self.api,
-                nv_mediaiep_geteof_nv_sci_sync_fence(self.iep, self.eof, &mut self.eof_fence)
+                nv_mediaiep_geteof_nv_sci_sync_fence(self.iep, self.eof, &mut slot.eof_fence)
             )?;
+        }
+        self.queue.push_back(self.next_slot);
+        self.next_slot = (self.next_slot + 1) % self.slots.len();
+        self.poisoned = false;
+        Ok(())
+    }
+    /// Collect the oldest submitted frame directly into its final shared allocation.
+    /// IEP never retains the output pointer. No compressed-frame staging copy is made.
+    pub fn receive(&mut self, output: &mut Arc<[u8]>) -> CuResult<()> {
+        if self.poisoned {
+            return Err("Encoder cannot be reused after an error".into());
+        }
+        let index = *self
+            .queue
+            .front()
+            .ok_or(CuError::from("No submitted frame"))?;
+        self.poisoned = true;
+        let slot = &mut self.slots[index];
+        // SAFETY: slot and its source sample remain live through EOF. GetBits fills
+        // exactly the checked allocation before its initialized Arc is published.
+        unsafe {
             call!(
                 self.api,
-                nv_sci_sync_fence_wait(&self.eof_fence, self.waiter, 10_000_000)
+                nv_sci_sync_fence_wait(&slot.eof_fence, self.waiter, 10_000_000)
             )?;
-            self.pending = false;
             let encoded = Instant::now();
             let mut available = 0;
-            let mut used = 0;
             call!(
                 self.api,
                 nv_mediaiep_bits_available(self.iep, &mut available, 1, 10_000)
             )?;
-            if available == 0 || available as usize > self.output.len() {
-                return Err("IEP bitstream exceeds the 32 MiB output buffer".into());
+            if available == 0 || available > 32 * 1024 * 1024 {
+                return Err("IEP output exceeds the 32 MiB bound".into());
             }
+            let mut bytes = Arc::<[u8]>::new_uninit_slice(available as usize);
             let stream = Bitstream {
-                data: self.output.as_mut_ptr(),
+                data: Arc::get_mut(&mut bytes)
+                    .ok_or(CuError::from("Output unexpectedly shared"))?
+                    .as_mut_ptr()
+                    .cast(),
                 used: 0,
-                capacity: self.output.len() as u32,
+                capacity: available,
             };
+            let mut used = 0;
             call!(
                 self.api,
                 nv_mediaiep_get_bits(self.iep, &mut used, 1, &stream, null_mut())
             )?;
-            if used != available
-                || used as usize > self.output.len()
-                || (stream.used != 0 && stream.used != used)
-            {
+            if used != available || (stream.used != 0 && stream.used != used) {
                 return Err("IEP returned inconsistent bitstream length".into());
             }
-            output.clear();
-            output.extend_from_slice(&self.output[..used as usize]);
-            (self.api.nv_sci_sync_fence_clear)(&mut self.pre_fence);
-            (self.api.nv_sci_sync_fence_clear)(&mut self.eof_fence);
+            *output = bytes.assume_init();
+            (self.api.nv_sci_sync_fence_clear)(&mut slot.pre_fence);
+            (self.api.nv_sci_sync_fence_clear)(&mut slot.eof_fence);
             self.timings = EncodeTimings {
-                upload: uploaded - started,
-                encode: encoded - uploaded,
+                upload: slot.uploaded - slot.started,
+                encode: encoded - slot.uploaded,
                 retrieve: encoded.elapsed(),
             };
         }
+        slot.sample.take();
+        self.queue.pop_front();
+        self.last_slot = Some(index);
+        self.pending = !self.queue.is_empty();
         self.poisoned = false;
         Ok(())
     }
 }
+
 impl Drop for Encoder {
     fn drop(&mut self) {
+        // Drain known submissions on normal shutdown. A failed submission may not
+        // have a usable fence, so retain every potentially live resource on failure.
+        if !self.poisoned {
+            let mut completed = true;
+            for &index in &self.queue {
+                // SAFETY: known queued submission owns a valid persistent EOF fence.
+                unsafe {
+                    if (self.api.nv_sci_sync_fence_wait)(
+                        &self.slots[index].eof_fence,
+                        self.waiter,
+                        10_000_000,
+                    ) != 0
+                    {
+                        completed = false;
+                        break;
+                    }
+                }
+            }
+            self.pending = !completed;
+        }
+        if !self.pending
+            && self
+                .gpu
+                .as_ref()
+                .is_some_and(|gpu| gpu.synchronize().is_err())
+        {
+            self.pending = true;
+        }
         if self.pending {
-            // There is no documented cancel operation. Preserve potentially live GPU
-            // objects AND their libraries until process exit instead of freeing them.
             std::mem::forget(self.api.clone());
-            if let Some(surface) = self.surface.take() {
-                std::mem::forget(surface);
+            std::mem::forget(std::mem::take(&mut self.slots));
+            if let Some(gpu) = self.gpu.take() {
+                std::mem::forget(gpu);
             }
             if let Some(reserve) = self.reserve.take() {
                 std::mem::forget(reserve);
             }
             return;
         }
-        // SAFETY: EOF completed (or nothing was submitted); release in dependency order.
+        // SAFETY: all CUDA work and encoder EOFs completed. Release imports before
+        // NvSci objects, and registered resources before their IEP owner.
         unsafe {
-            if self.image_registered
-                && let Some(surface) = &self.surface
-            {
-                (self.api.nv_mediaiep_unregister_nv_sci_buf_obj)(self.iep, surface.object);
+            for slot in &mut self.slots {
+                slot.image.take();
+                slot.sample.take();
+                if slot.registered {
+                    (self.api.nv_mediaiep_unregister_nv_sci_buf_obj)(self.iep, slot.surface.object);
+                }
+                (self.api.nv_sci_sync_fence_clear)(&mut slot.pre_fence);
+                (self.api.nv_sci_sync_fence_clear)(&mut slot.eof_fence);
             }
+            self.gpu.take();
             if self.pre_registered {
                 (self.api.nv_mediaiep_unregister_nv_sci_sync_obj)(self.iep, self.pre);
             }
             if self.eof_registered {
                 (self.api.nv_mediaiep_unregister_nv_sci_sync_obj)(self.iep, self.eof);
             }
-            (self.api.nv_sci_sync_fence_clear)(&mut self.pre_fence);
-            (self.api.nv_sci_sync_fence_clear)(&mut self.eof_fence);
             if !self.iep.is_null() {
                 (self.api.nv_mediaiep_destroy)(self.iep);
             }
@@ -576,7 +743,7 @@ impl Drop for Encoder {
             if !self.sync_module.is_null() {
                 (self.api.nv_sci_sync_module_close)(self.sync_module);
             }
-            self.surface.take();
+            self.slots.clear();
             self.reserve.take();
             if !self.module.is_null() {
                 (self.api.nv_sci_buf_module_close)(self.module);
