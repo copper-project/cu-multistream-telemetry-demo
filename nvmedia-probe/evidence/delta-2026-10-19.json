@@ -1,0 +1,2196 @@
+{
+  "1080p-4bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 4,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.667
+        },
+        {
+          "stage": "encode",
+          "returncode": 0,
+          "seconds": 0.869
+        },
+        {
+          "stage": "decode",
+          "returncode": 0,
+          "seconds": 0.616
+        }
+      ],
+      "passed": true,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL)",
+          "0x00000000"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": false,
+      "iep_version": "1.1.0",
+      "available_bytes": 3637739,
+      "encoded_bytes": 3637739,
+      "bitstream_bytes": 0,
+      "upload_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "decoded_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "decoded_bytes": 6220800
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-1080p-4bit/probe\n/root/nvmedia-probe/results/delta-1080p-4bit/probe /root/nvmedia-probe/results/delta-1080p-4bit/input.y444 /root/nvmedia-probe/results/delta-1080p-4bit/encoded.h265 /root/nvmedia-probe/results/delta-1080p-4bit/upload.y444 1920 1080 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-1080p-4bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-1080p-4bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000000\navailable_bytes=3637739 capacity_bytes=67108864\ncall=api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL) status=0x00000000\nencoded_bytes=3637739 bitstream_bytes=0\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=true\n",
+    "decode.log": "Setting pipeline to PAUSED ...\nPipeline is PREROLLING ...\n0:00:00.098634695      18686      18688 WARN               h265parse gsth265parse.c:2500:gst_h265_parse_update_src_caps:<h265parse0> Unknown profile, guessing\n/GstPipeline:pipeline0/GstH265Parse:h265parse0.GstPad:src: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\nRedistribute latency...\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:sink: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n0:00:00.555055014      18686      18688 WARN              video-info video-info.c:198:validate_colorimetry: Need to specify a co/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\nlor matrix when using YUV format (Y444)\n0:00:00.555079015      18686      18688 WARN              video-info video-info.c:565:gst_video_info_from_caps: invalid colorimetry, using default\nPipeline is PREROLLED ...\nSetting pipeline to PLAYING ...\nRedistribute latency...\nNew clock: GstSystemClock\nGot EOS from element \"pipeline0\".\nEOS received - stopping pipeline...\nExecution ended after 0:00:00.007613781\nSetting pipeline to NULL ...\nFreeing pipeline ...\n"
+  },
+  "1080p-5bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 5,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "1203688e2ec91e2ddf2ff16c56f3ea09dd54f4725b2813e4ef8787d131909163",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.668
+        },
+        {
+          "stage": "encode",
+          "returncode": 0,
+          "seconds": 0.869
+        },
+        {
+          "stage": "decode",
+          "returncode": 0,
+          "seconds": 0.718
+        }
+      ],
+      "passed": true,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL)",
+          "0x00000000"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": false,
+      "iep_version": "1.1.0",
+      "available_bytes": 4584918,
+      "encoded_bytes": 4584918,
+      "bitstream_bytes": 0,
+      "upload_sha256": "1203688e2ec91e2ddf2ff16c56f3ea09dd54f4725b2813e4ef8787d131909163",
+      "decoded_sha256": "1203688e2ec91e2ddf2ff16c56f3ea09dd54f4725b2813e4ef8787d131909163",
+      "decoded_bytes": 6220800
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-1080p-5bit/probe\n/root/nvmedia-probe/results/delta-1080p-5bit/probe /root/nvmedia-probe/results/delta-1080p-5bit/input.y444 /root/nvmedia-probe/results/delta-1080p-5bit/encoded.h265 /root/nvmedia-probe/results/delta-1080p-5bit/upload.y444 1920 1080 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-1080p-5bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-1080p-5bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000000\navailable_bytes=4584918 capacity_bytes=67108864\ncall=api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL) status=0x00000000\nencoded_bytes=4584918 bitstream_bytes=0\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=true\n",
+    "decode.log": "Setting pipeline to PAUSED ...\nPipeline is PREROLLING ...\n0:00:00.151670821      18705      18707 WARN               h265parse gsth265parse.c:2500:gst_h265_parse_update_src_caps:<h265parse0> Unknown profile, guessing\n/GstPipeline:pipeline0/GstH265Parse:h265parse0.GstPad:src: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\nRedistribute latency...\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:sink: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n0:00:00.668080521      18705      18707 WARN              video-info video-info.c:198:validate_colorimetry: Need to specify a color matrix when using YUV format (Y444)\n/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n0:00:00.668104298      18705      18707 WARN              video-info video-info.c:565:gst_video_info_from_caps: invalid colorimetry, using default\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\nPipeline is PREROLLED ...\nSetting pipeline to PLAYING ...\nRedistribute latency...\nNew clock: GstSystemClock\nGot EOS from element \"pipeline0\".\nEOS received - stopping pipeline...\nExecution ended after 0:00:00.007836668\nSetting pipeline to NULL ...\nFreeing pipeline ...\n"
+  },
+  "1080p-6bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 6,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "5fa3f8e5c7813fa04149928d8429731fe0355d153ae1492ffaf2b5b389566f49",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.667
+        },
+        {
+          "stage": "encode",
+          "returncode": 0,
+          "seconds": 0.868
+        },
+        {
+          "stage": "decode",
+          "returncode": 0,
+          "seconds": 0.816
+        }
+      ],
+      "passed": true,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL)",
+          "0x00000000"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": false,
+      "iep_version": "1.1.0",
+      "available_bytes": 5587632,
+      "encoded_bytes": 5587632,
+      "bitstream_bytes": 0,
+      "upload_sha256": "5fa3f8e5c7813fa04149928d8429731fe0355d153ae1492ffaf2b5b389566f49",
+      "decoded_sha256": "5fa3f8e5c7813fa04149928d8429731fe0355d153ae1492ffaf2b5b389566f49",
+      "decoded_bytes": 6220800
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-1080p-6bit/probe\n/root/nvmedia-probe/results/delta-1080p-6bit/probe /root/nvmedia-probe/results/delta-1080p-6bit/input.y444 /root/nvmedia-probe/results/delta-1080p-6bit/encoded.h265 /root/nvmedia-probe/results/delta-1080p-6bit/upload.y444 1920 1080 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-1080p-6bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-1080p-6bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000000\navailable_bytes=5587632 capacity_bytes=67108864\ncall=api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL) status=0x00000000\nencoded_bytes=5587632 bitstream_bytes=0\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=true\n",
+    "decode.log": "Setting pipeline to PAUSED ...\nPipeline is PREROLLING ...\n0:00:00.185742127      18724      18726 WARN               h265parse gsth265parse.c:2500:gst_h265_parse_update_src_caps:<h265parse0> Unknown profile, guessing\n/GstPipeline:pipeline0/GstH265Parse:h265parse0.GstPad:src: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\nRedistribute latency...\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:sink: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f589ac80\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n0:00:00.760919229      18724      18726 WARN              video-info video-info.c:198:validate_colorimetry: Need to specify a color matrix when using YUV format (Y444)\n0:00:00.760986335      18724      18726 WARN              video-info video-info.c:565:gst_video_info_from_caps: invalid colorimetry, using default\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\nPipeline is PREROLLED ...\nSetting pipeline to PLAYING ...\nRedistribute latency...\nNew clock: GstSystemClock\nGot EOS from element \"pipeline0\".\nEOS received - stopping pipeline...\nExecution ended after 0:00:00.007800314\nSetting pipeline to NULL ...\nFreeing pipeline ...\n"
+  },
+  "1080p-7bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 7,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "3e60c12380eb1aa6496b88c3126aaa36e8b401eb7415e0953632cd1194201ae5",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.667
+        },
+        {
+          "stage": "encode",
+          "returncode": 1,
+          "seconds": 0.868
+        }
+      ],
+      "passed": false,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000007"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": true,
+      "failed_api": [
+        "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+        "0x00000007"
+      ],
+      "iep_version": "1.1.0",
+      "error": "encode failed; inspect encode.log"
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-1080p-7bit/probe\n/root/nvmedia-probe/results/delta-1080p-7bit/probe /root/nvmedia-probe/results/delta-1080p-7bit/input.y444 /root/nvmedia-probe/results/delta-1080p-7bit/encoded.h265 /root/nvmedia-probe/results/delta-1080p-7bit/upload.y444 1920 1080 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-1080p-7bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-1080p-7bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ntegraH265EncodeGetStatus: Allocated bitstream size is less than size required to encode a frame \ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000007\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=false\n"
+  },
+  "1080p-8bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 8,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "54de9879749b928b04e0758afea13c27640d00898cdc7b41f5cb1cd246cf240a",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.668
+        },
+        {
+          "stage": "encode",
+          "returncode": 1,
+          "seconds": 0.867
+        }
+      ],
+      "passed": false,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000007"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": true,
+      "failed_api": [
+        "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+        "0x00000007"
+      ],
+      "iep_version": "1.1.0",
+      "error": "encode failed; inspect encode.log"
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-1080p-8bit/probe\n/root/nvmedia-probe/results/delta-1080p-8bit/probe /root/nvmedia-probe/results/delta-1080p-8bit/input.y444 /root/nvmedia-probe/results/delta-1080p-8bit/encoded.h265 /root/nvmedia-probe/results/delta-1080p-8bit/upload.y444 1920 1080 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-1080p-8bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-1080p-8bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ntegraH265EncodeGetStatus: Allocated bitstream size is less than size required to encode a frame \ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000007\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=false\n"
+  },
+  "720p-8bit": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 8,
+      "width": 1280,
+      "height": 720,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 2764800,
+      "input_sha256": "87fe66c221df19f2d6b5c08fc273eb5c8018cd4bdd9589f931e1a81b783ae746",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.667
+        },
+        {
+          "stage": "encode",
+          "returncode": 1,
+          "seconds": 0.416
+        }
+      ],
+      "passed": false,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000007"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": true,
+      "failed_api": [
+        "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+        "0x00000007"
+      ],
+      "iep_version": "1.1.0",
+      "error": "encode failed; inspect encode.log"
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-720p-8bit/probe\n/root/nvmedia-probe/results/delta-720p-8bit/probe /root/nvmedia-probe/results/delta-720p-8bit/input.y444 /root/nvmedia-probe/results/delta-720p-8bit/encoded.h265 /root/nvmedia-probe/results/delta-720p-8bit/upload.y444 1280 720 67108864 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-720p-8bit/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-720p-8bit/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=2949120 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1280,1280 heights=720,720\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ntegraH265EncodeGetStatus: Allocated bitstream size is less than size required to encode a frame \ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000007\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=false\n"
+  },
+  "lossy-control": {
+    "summary": {
+      "mode": "control",
+      "bits": 4,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 67108864,
+      "input_bytes": 6220800,
+      "input_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.666
+        },
+        {
+          "stage": "encode",
+          "returncode": 0,
+          "seconds": 0.816
+        },
+        {
+          "stage": "decode",
+          "returncode": 0,
+          "seconds": 0.366
+        }
+      ],
+      "passed": false,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL)",
+          "0x00000000"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": false,
+      "iep_version": "1.1.0",
+      "available_bytes": 1184328,
+      "encoded_bytes": 1184328,
+      "bitstream_bytes": 0,
+      "upload_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "decoded_sha256": "3a19fe038647b622a0654dddb8ffafd910839f72886dec77cf575e0e43938810",
+      "decoded_bytes": 6220800,
+      "error": "decoded bytes differ from input"
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-lossy-control/probe\n/root/nvmedia-probe/results/delta-lossy-control/probe /root/nvmedia-probe/results/delta-lossy-control/input.y444 /root/nvmedia-probe/results/delta-lossy-control/encoded.h265 /root/nvmedia-probe/results/delta-lossy-control/upload.y444 1920 1080 67108864 control\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-lossy-control/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-lossy-control/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=67108864 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000000\navailable_bytes=1184328 capacity_bytes=67108864\ncall=api.NvMediaIEPGetBits(iep, &used, 1, &stream, NULL) status=0x00000000\nencoded_bytes=1184328 bitstream_bytes=0\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=true\n",
+    "decode.log": "Setting pipeline to PAUSED ...\nPipeline is PREROLLING ...\n0:00:00.036302045      18786      18788 WARN               h265parse gsth265parse.c:2500:gst_h265_parse_update_src_caps:<h265parse0> Unknown profile, guessing\n/GstPipeline:pipeline0/GstH265Parse:h265parse0.GstPad:src: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f581ac80\nRedistribute latency...\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:sink: caps = video/x-h265, width=(int)1920, height=(int)1080, chroma-format=(string)4:4:4, bit-depth-luma=(uint)8, bit-depth-chroma=(uint)8, parsed=(boolean)true, stream-format=(string)hvc1, alignment=(string)au, profile=(string)main-444, tier=(string)main, level=(string)4, lcevc=(boolean)false, codec_data=(buffer)01040800000000000000000078f000fcfff8f800000f03200001001840010c01ffff04080000030000030000030000030078ac09210001002142010104080000030000030000030000030078900078100220f89cb5dc842325c122000100074401c0f581ac80\n/GstPipeline:pipeline0/avdec_h265:avdec_h265-0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n0:00:00.334280468      18786      18788 WARN              video-info video-info.c:198:validate_colorimetry: Need to specify a color matrix when using YUV format (Y444)\n0:00:00.334315381      18786      18788 WARN              video-info video-info.c:565:gst_video_info_from_caps: invalid colorimetry, using default\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\n/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)Y444, width=(int)1920, height=(int)1080, interlace-mode=(string)progressive, pixel-aspect-ratio=(fraction)1/1, colorimetry=(string)2:0:0:0, framerate=(fraction)25/1\nPipeline is PREROLLED ...\nSetting pipeline to PLAYING ...\nRedistribute latency...\nNew clock: GstSystemClock\nGot EOS from element \"pipeline0\".\nEOS received - stopping pipeline...\nExecution ended after 0:00:00.009231085\nSetting pipeline to NULL ...\nFreeing pipeline ...\n"
+  },
+  "small-buffer": {
+    "summary": {
+      "mode": "lossless",
+      "bits": 4,
+      "width": 1920,
+      "height": 1080,
+      "frames": 1,
+      "capacity_bytes": 1048576,
+      "input_bytes": 6220800,
+      "input_sha256": "fd9d13dbcfa286d1b56443e4f3b77d61b99e7b536a3f42b20c208c31c1dcf4da",
+      "source_sha256": {
+        "probe.c": "8b013efa6aa089bbc9a7483f7696d8d4759f492d69a2af0e49c2ad5bb5162ec1",
+        "iep_compat.h": "73ce2ca824832fd610780dea85b593f5737f699ce8e2a3cc6e38708b90045c8b",
+        "run.py": "e6dc087a582afbf0ebcb23c77d12f28dc98522ecd0a697a85960ccda33288108"
+      },
+      "uname": [
+        "Linux",
+        "delta-guillaume",
+        "6.8.12-l4t-r39.2.1-1021.21",
+        "#1 SMP PREEMPT Sat May  9 03:14:53 UTC 2026",
+        "aarch64"
+      ],
+      "stages": [
+        {
+          "stage": "build",
+          "returncode": 0,
+          "seconds": 0.667
+        },
+        {
+          "stage": "encode",
+          "returncode": 1,
+          "seconds": 0.818
+        }
+      ],
+      "passed": false,
+      "libraries_sha256": {
+        "libnvmedia_iep_sci.so": "8a1077829abc39bd4630915208685b854d266624a75e5fa621f698f09cecfb73",
+        "libnvscibuf.so": "6057d6953d3445708ecc239a2ac3b9226d2015c980458796bdc07eac7e20184e",
+        "libnvscisync.so": "6b1d0eecad75a5f37251dbb8b1e0c4124c49199cdb30f8015e9b2ec9dd1911f7",
+        "libnvvideo.so": "ce4be41ad67a64dfea905693af15a89344fad2a7a50cc04f8850207032011e51"
+      },
+      "api_calls": [
+        [
+          "api.NvMediaIEPGetVersion(&version)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufModuleOpen(&module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListCreate(module, &request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciBufAttrList(0, request)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjAlloc(reconciled, &image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetAttrList(image, &actual)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetConfiguration(iep, &config)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciBufObj(iep, image)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncModuleOpen(&sync_module)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &engine)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListCreate(module, &cpu)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0]))",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjAlloc(reconciled, out)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjGenerateFence(pre, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncObjSignal(pre)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPFeedFrame(iep, image, &picture, 0)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence)",
+          "0x00000000"
+        ],
+        [
+          "api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000)",
+          "0x00000000"
+        ],
+        [
+          "api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000)",
+          "0x00000000"
+        ]
+      ],
+      "v4l2_or_gstreamer_loaded": false,
+      "upload_exact": true,
+      "internal_buffer_error": false,
+      "iep_version": "1.1.0",
+      "available_bytes": 3637739,
+      "error": "encode failed; inspect encode.log"
+    },
+    "commands.sh": "cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic /root/nvmedia-probe/probe.c -ldl -o /root/nvmedia-probe/results/delta-small-buffer/probe\n/root/nvmedia-probe/results/delta-small-buffer/probe /root/nvmedia-probe/results/delta-small-buffer/input.y444 /root/nvmedia-probe/results/delta-small-buffer/encoded.h265 /root/nvmedia-probe/results/delta-small-buffer/upload.y444 1920 1080 1048576 lossless\ngst-launch-1.0 -e -f -v filesrc location=/root/nvmedia-probe/results/delta-small-buffer/encoded.h265 '!' h265parse '!' avdec_h265 '!' video/x-raw,format=Y444 '!' filesink location=/root/nvmedia-probe/results/delta-small-buffer/decoded.y444 sync=false\n",
+    "build.log": "",
+    "encode.log": "call=api.NvMediaIEPGetVersion(&version) status=0x00000000\niep_version=1.1.0 init_size=76 config_size=120 picture_size=128\ncall=api.NvSciBufCheckVersionCompatibility(2, 11, &buf_compatible) status=0x00000000\ncall=api.NvSciSyncCheckVersionCompatibility(2, 8, &sync_compatible) status=0x00000000\nnvscibuf_2_11=1 nvscisync_2_8=1\noutput_allocated_bytes=1048576 guard_pages=2\ncall=api.NvSciBufModuleOpen(&module) status=0x00000000\ncall=api.NvSciBufAttrListCreate(module, &request) status=0x00000000\ncall=api.NvMediaIEPFillNvSciBufAttrList(0, request) status=0x00000000\nattribute_key=0x1 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x3 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x4 bytes=1\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20000 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2000e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20017 bytes=8\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20018 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x20019 bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001a bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001b bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001c bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001d bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001e bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\nattribute_key=0x2001f bytes=4\ncall=api.NvSciBufAttrListSetAttrs(request, &attrs[index], 1) status=0x00000000\ncall=api.NvSciBufAttrListReconcile(&request, 1, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciBufObjAlloc(reconciled, &image) status=0x00000000\ncall=api.NvSciBufObjGetAttrList(image, &actual) status=0x00000000\ncall=api.NvSciBufAttrListGetAttrs(actual, query, sizeof(query) / sizeof(query[0])) status=0x00000000\nsurface_bytes=6635520 planes=2 cache_flush=0\nsurface_formats=84,76 widths=1920,1920 heights=1080,1080\ncall=api.NvSciBufObjPutPixels(image, NULL, src, sizes, pitches) status=0x00000000\ncall=api.NvSciBufObjGetPixels(image, NULL, dst, sizes, pitches) status=0x00000000\nupload_exact=true\nencoder_created=true\ncall=api.NvMediaIEPSetConfiguration(iep, &config) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciBufObj(iep, image) status=0x00000000\ncall=api.NvSciSyncModuleOpen(&sync_module) status=0x00000000\ncall=api.NvSciSyncCpuWaitContextAlloc(sync_module, &waiter) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &engine) status=0x00000000\ncall=api.NvSciSyncAttrListCreate(module, &cpu) status=0x00000000\ncall=api.NvMediaIEPFillNvSciSyncAttrList(iep, engine, eof ? IEP_SIGNALER : IEP_WAITER) status=0x00000000\ncall=api.NvSciSyncAttrListSetAttrs(cpu, attrs, sizeof(attrs) / sizeof(attrs[0])) status=0x00000000\ncall=api.NvSciSyncAttrListReconcile(lists, 2, &reconciled, &conflict) status=0x00000000\ncall=api.NvSciSyncObjAlloc(reconciled, out) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_PRE, pre) status=0x00000000\ncall=api.NvMediaIEPRegisterNvSciSyncObj(iep, IEP_EOF, eof) status=0x00000000\ncall=api.NvMediaIEPSetNvSciSyncObjforEOF(iep, eof) status=0x00000000\ncall=api.NvSciSyncObjGenerateFence(pre, &pre_fence) status=0x00000000\ncall=api.NvMediaIEPInsertPreNvSciSyncFence(iep, &pre_fence) status=0x00000000\ncall=api.NvSciSyncObjSignal(pre) status=0x00000000\ncall=api.NvMediaIEPFeedFrame(iep, image, &picture, 0) status=0x00000000\ncall=api.NvMediaIEPGetEOFNvSciSyncFence(iep, eof, &eof_fence) status=0x00000000\ncall=api.NvSciSyncFenceWait(&eof_fence, waiter, 10000000) status=0x00000000\ncall=api.NvMediaIEPBitsAvailable(iep, &available, 1, 10000) status=0x00000000\navailable_bytes=3637739 capacity_bytes=1048576\nmapped=/data/dev/toolchain/lib/libgcc_s.so.1\nmapped=/usr/lib/libm.so.6\nmapped=/usr/lib/libnvtegrahv.so\nmapped=/usr/lib/libnvrm_chip.so\nmapped=/usr/lib/libgnat-25.so\nmapped=/usr/lib/libnvsciipc.so\nmapped=/usr/lib/libnvscicommon.so.1\nmapped=/usr/lib/librt.so.1\nmapped=/usr/lib/libpthread.so.0\nmapped=/usr/lib/libdl.so.2\nmapped=/usr/lib/libnvrm_gpu.so\nmapped=/usr/lib/libnvrm_sync.so\nmapped=/usr/lib/libnvrm_stream.so\nmapped=/usr/lib/libnvrm_host1x.so\nmapped=/usr/lib/libnvrm_mem.so\nmapped=/usr/lib/libnvrm_surface.so\nmapped=/usr/lib/libnvscisync.so.1\nmapped=/usr/lib/libnvscibuf.so.1\nmapped=/usr/lib/libnvsocsys.so\nmapped=/usr/lib/libnvos.so\nmapped=/usr/lib/libnvvideo.so\nmapped=/usr/lib/libnvmedia_iep_sci.so\nmapped=/usr/lib/libc.so.6\nmapped=/usr/lib/ld-linux-aarch64.so.1\nv4l2_or_gstreamer_loaded=false\nencode_passed=false\n"
+  }
+}
