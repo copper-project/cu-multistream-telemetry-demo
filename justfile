@@ -17,8 +17,9 @@ telemetry *args:
 
 fmt:
     cargo fmt --all
-    taplo fmt Cargo.toml telemetry-station/Cargo.toml
-    fmtron copperconfig.ron copperconfig-record.ron
+    cargo fmt --manifest-path jetson-demo/Cargo.toml
+    taplo fmt Cargo.toml telemetry-station/Cargo.toml jetson-demo/Cargo.toml
+    fmtron copperconfig.ron copperconfig-record.ron jetson-demo/copperconfig.ron
 
 # Run the lossless NvMedia alternative on Delta.
 nvmedia *args:
@@ -38,3 +39,12 @@ record *args:
         source /data/dev/env.sh
     fi
     exec cargo +stable run -r --locked --features nvmedia --bin nvmedia-record -- record "$@"
+
+# Record shared-surface lossless + lossy camera branches without GStreamer.
+jetson *args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ -r /data/dev/env.sh ]]; then
+        source /data/dev/env.sh
+    fi
+    exec cargo +stable run -r --locked --manifest-path jetson-demo/Cargo.toml -- "$@"
