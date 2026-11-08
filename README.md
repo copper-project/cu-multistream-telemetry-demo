@@ -308,6 +308,14 @@ heap-corruption failures at both 15 fps and 5 fps. A short six-process standalon
 GStreamer test at 5 fps completed; that does not establish long-term stability.
 The feature remains experimental.
 
+The [2026-10-19 GStreamer-only investigation](lossless-repro/RESULTS.md)
+reproduced the same assertion and segfault without Rust, Copper, or decoding.
+The NVIDIA V4L2 path reports encoded frames larger than its capture buffers:
+for example, 3,563,519 bytes used in a 3,133,440-byte allocation. A
+[minimal reproducer](lossless-repro/README.md) isolates the trigger to larger
+lossless frames; 720p, 1088-line alignment, 5 fps, and a different profile do
+not eliminate the allocation defect. The exact NVIDIA backend fix remains open.
+
 A separate ten-frame 1080p YUV444 test encoded and decoded to identical SHA-256
 hashes, confirming that the encoder can produce pixel-exact H.265. Preservation
 of the original camera's UYVY samples through NV24 conversion is still unverified.
